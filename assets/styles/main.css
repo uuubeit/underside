@@ -1,0 +1,112 @@
+@font-face {
+    font-family: 'A24';
+    src: url("../fonts/A24-Regular.otf") format('opentype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("../fonts/Montserrat-Regular.ttf") format('truetype');
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'A24', sans-serif;
+    /* Похожий на оригинал шрифт */
+    color: #C70709;
+    background-color: #FFFFEE;
+    height: 100vh;
+}
+
+.header {
+    background-color: #FFFFEE;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    border-bottom: 2px solid #CC0000;
+}
+
+.header-icons {
+    cursor: pointer;
+}
+
+.menu-icon img {
+    width: 70px;
+    height: auto;
+}
+
+.header-icons {}
+
+.header-icons img {
+    margin: 0px 7px;
+    width: 40px;
+    height: auto;
+}
+
+.logo {
+    font-size: 80px;
+}
+
+
+.marquee {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    background-color: #FFFFEE;
+
+    width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+/* Текст */
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    /* старт за пределами */
+    animation: marquee 15s linear infinite;
+}
+
+/* Анимация */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+.intro_container {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+
+}
+
+.video-wrap {
+    pointer-events: none;
+    height: 100%;
+}
+
+.intro_container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: -1;
+}

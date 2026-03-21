@@ -4,19 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets\styles\main.css">
+
     <title>Document</title>
 </head>
 
 <body>
+    <header class="header">
+        <div class="header-left">
+            <div class="menu-icon">
+                <img src="assets/icons/menu-icon.svg" alt="arrow">
+            </div>
+        </div>
+
+        <div class="logo">Изнанка</div>
+
+        <div class="header-right">
+            <div class="header-icons">
+                <img src="assets/icons/vk-icon.svg" alt="arrow">
+                <img src="assets/icons/telegram-icon.svg" alt="arrow">
+                <img src="assets/icons/main-icon.svg" alt="arrow">
+                <img src="assets/icons/cart-icon.svg" alt="arrow">
+            </div>
+        </div>
+    </header>
+
+    <div class="marquee">
+        <span>
+            скидка 15% по промокоду OK! • на первый заказ
+        </span>
+    </div>
+
     <div class="intro_container">
         <div class="video-wrap">
-            <video pip="false" autoplay muted  playsinline controlslist="nofullscreen noremoteplayback nodownload">
-                <source src="animate.mp4">
+            <video pip="false" autoplay muted playsinline controlslist="nofullscreen noremoteplayback nodownload"
+                preload="metadata" poster="assets\media\end.png">
+                <source src="assets/media/animate.mp4">
             </video>
         </div>
     </div>
-    <script src="app.js"></script>
+    <script src="assets\js\app.js"></script>
 </body>
 
 </html>
