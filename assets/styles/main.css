@@ -26,7 +26,9 @@
 }
 
 :root {
-    --header-height: 200px;
+    --header-height: 205px;
+    --red: #C70709;
+    --cream: #FFFCEB;
 }
 
 * {
@@ -45,8 +47,10 @@ body {
 
 .preview {
     flex: 1;
-    height: calc(100vh - var(--header-height));
     display: flex;
+    background-color: #C70709;
+    height: calc(100vh - var(--header-height));
+
 }
 
 header {
@@ -58,16 +62,30 @@ header {
 
 .header {
     background-color: #FFFFEE;
+    color: #C70709;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
-    border-bottom: 2px solid #CC0000;
+    transition: all 0.3s ease;
+
+}
+
+
+
+
+
+/* Текст */
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    /* старт за пределами */
+    animation: marquee 15s linear infinite;
 }
 
 .menu-icon img {
     cursor: pointer;
-    width: clamp(60px, 6vw ,100px);
+    width: clamp(60px, 6vw, 100px);
     height: auto;
 }
 
@@ -82,41 +100,50 @@ header {
 .logo {
     font-family: 'A24', sans-serif;
     line-height: 0.8;
-    font-size: clamp(70px, 10vw ,140px);
+    font-size: clamp(70px, 10vw, 140px);
 }
+
 
 
 .marquee {
     font-size: 40px;
-    background-color: #FFFFEE;
-
-    width: 100%;
-    margin: 10px 0;
+    background-color: #C70709;
+    color: #FFFFEE;
     overflow: hidden;
     white-space: nowrap;
-    box-sizing: border-box;
+    background: #FFFFEE;
+    font-size: 40px;
+    margin: 10px 0;
     padding: 10px 0;
+
 }
 
-/* Текст */
-.marquee span {
-    display: inline-block;
-    padding-left: 100%;
-    /* старт за пределами */
+.marquee-track {
+    display: flex;
+    width: max-content;
     animation: marquee 15s linear infinite;
 }
 
-/* Анимация */
+.marquee-track span {
+    white-space: nowrap;
+}
+
+/* ВАЖНО: двигаем ровно на половину */
 @keyframes marquee {
-    0% {
+    from {
         transform: translateX(0);
     }
 
-    100% {
-        transform: translateX(-100%);
+    to {
+        transform: translateX(-50%);
     }
 }
 
+
+.scrolled {
+    background-color: #FFFFEE;
+    color: #C70709;
+}
 
 .intro {
     margin: 0;
@@ -126,9 +153,8 @@ header {
 }
 
 .container {
-    background-color: #FFFFEE;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - var(--header-height)/2);
 }
 
 .video-wrap {
@@ -203,3 +229,261 @@ header {
         flex-direction: column;
     }
 }
+
+/* ABOUT US */
+.about-us {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.about-us-content {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4vw;
+}
+
+.about-us-content-text {
+    width: 42%;
+    margin-right: 18%;
+}
+
+.about-us-content-text h2 {
+    font-family: 'A24', sans-serif;
+    line-height: 0.8;
+    font-size: clamp(30px, 4vw, 70px);
+    margin: 10px 0;
+}
+
+.about-us-content-text h3 {
+    color: black;
+    font-weight: 400;
+    font-size: clamp(15px, 1.8vw, 30px);
+}
+
+.about-us-content img {
+    width: 20%;
+}
+
+
+/* CATALOG */
+.catalog {
+    overflow: hidden;
+    border-top: 1px solid #C70709;
+    position: relative;
+    background-color: transparent;
+}
+
+.slider-color {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex: 0 0 100%;
+}
+
+.slide-layers {
+    display: flex;
+    flex-direction: column; /* Складываем этажи вертикально */
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); /* Плавный подъем */
+}
+
+.layer {
+    flex: 0 0 100%; /* Каждый этаж занимает всю высоту слайда */
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Слой "Изнанка" — картинка на весь экран */
+.layer.back img {
+    width: 100%;
+    object-fit: cover; /* Чтобы фото заполнило всё пространство */
+}
+
+.catalog.active-back .slide-layers {
+    transform: translateY(-100%);
+}
+
+.title-color {
+    font-family: 'A24', sans-serif;
+    line-height: 0.8;
+    font-size: clamp(30px, 5.5vw, 80px);
+    margin: 20px 40px;
+}
+
+.slide-content {
+    width: 100%;
+}
+
+.slide-content-control {
+    padding-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.slide-button-left {
+    margin: 0 20px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.slide-button-right {
+    width: 40px;
+    margin: 0 20px;
+    cursor: pointer;
+
+}
+
+.slide img {
+    width: 55%;
+}
+
+.slide-price {
+    width: 25%;
+    position: absolute;
+    top: 46%;
+    left: 84%;
+    font-weight: 600;
+    font-size: clamp(30px, 5.5vw, 80px);
+    transform: translateX(-50%);
+    /* Центрируем саму обертку по горизонтали */
+
+}
+
+#catalog-buy-wrapper {
+    position: absolute;
+    /* Чтобы стояла на месте над слайдами */
+    left: 84%;
+    bottom: 30%;
+    transform: translateX(-50%);
+    /* Центрируем саму обертку по горизонтали */
+
+    display: flex;
+    justify-content: center;
+    /* Центровка по горизонтали */
+    align-items: center;
+    /* Центровка по вертикали */
+
+    width: 25%;
+    /* Укажите нужную ширину кнопки на экране */
+    cursor: pointer;
+    z-index: 100;
+}
+
+#catalog-buy-button {
+    width: 100%;
+    /* SVG растягивается на всю ширину обертки */
+    height: auto;
+    display: block;
+}
+
+.buy-text {
+    position: absolute;
+    /* Текст вырывается и ложится ПОВЕРХ SVG */
+    color: #fff;
+    /* Белый цвет текста */
+    font-size: 40px;
+    text-transform: lowercase;
+    pointer-events: none;
+    /* Чтобы клик по буквам срабатывал на кнопку под ними */
+
+    /* Если визуально кажется, что текст чуть ниже/выше из-за формы облака, 
+       можно подправить его вручную через margin: */
+    margin-top: -5px;
+}
+
+
+/* TOGGLE */
+.toggle-container {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    /* Или ваш шрифт */
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+}
+
+.toggle-input {
+    display: none;
+    /* Прячем стандартный чекбокс */
+}
+
+.toggle-label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 280px;
+    /* Настройте под себя */
+    height: 54px;
+    border: 1.5px solid var(--red);
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+}
+
+.toggle-text {
+    flex: 1;
+    text-align: center;
+    color: var(--red);
+    font-size: 24px;
+    font-weight: 600;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+/* Бегунок (красная пилюля) */
+.toggle-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background-color: rgba(255, 0, 0, 0);
+    border: 2px solid var(--red);
+    /* Рамка вокруг активного элемента */
+    border-radius: 40px;
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Текст внутри бегунка, чтобы он всегда был красным/жирным */
+.slider-text {
+    color: inherit;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+/* ЛОГИКА ПЕРЕКЛЮЧЕНИЯ */
+
+/* Перемещение бегунка вправо */
+.toggle-input:checked+.toggle-label .toggle-slider {
+    transform: translateX(100%);
+}
+
+/* Меняем текст внутри бегунка в зависимости от состояния */
+/* .toggle-input:checked + .toggle-label .slider-text::before {
+  content: "изнанка";
+}
+.toggle-input:not(:checked) + .toggle-label .slider-text::before {
+  content: "внешка";
+} */
