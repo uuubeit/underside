@@ -26,9 +26,10 @@
 }
 
 :root {
-    --header-height: 205px;
+    --header-height: 115px;
     --red: #C70709;
     --cream: #FFFCEB;
+    --ratio: 1;
 }
 
 * {
@@ -48,9 +49,10 @@ body {
 .preview {
     flex: 1;
     display: flex;
+    flex-direction: column;
     background-color: #C70709;
     height: calc(100vh - var(--header-height));
-
+    position: relative;
 }
 
 header {
@@ -72,16 +74,46 @@ header {
 }
 
 
+.marquee {
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
+    z-index: 5;
+    font-size: 40px;
+    background-color: #FFFFEE;
+    color: #C70709;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 40px;
+    margin: 10px 0;
+    padding: 10px 0;
+}
 
 
+.marquee-track {
+    display: flex;
+    width: 100%;
+}
+
+/* чтобы текст не переносился */
+.marquee-track span {
+    white-space: nowrap;
+    animation: marquee 5s linear infinite;
+}
+
+
+/* КЛЮЧЕВОЕ */
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
 
 /* Текст */
-.marquee span {
-    display: inline-block;
-    padding-left: 100%;
-    /* старт за пределами */
-    animation: marquee 15s linear infinite;
-}
+
 
 .menu-icon img {
     cursor: pointer;
@@ -105,45 +137,6 @@ header {
 
 
 
-.marquee {
-    font-size: 40px;
-    background-color: #C70709;
-    color: #FFFFEE;
-    overflow: hidden;
-    white-space: nowrap;
-    background: #FFFFEE;
-    font-size: 40px;
-    margin: 10px 0;
-    padding: 10px 0;
-
-}
-
-.marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee 15s linear infinite;
-}
-
-.marquee-track span {
-    white-space: nowrap;
-}
-
-/* ВАЖНО: двигаем ровно на половину */
-@keyframes marquee {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-
-.scrolled {
-    background-color: #FFFFEE;
-    color: #C70709;
-}
 
 .intro {
     margin: 0;
@@ -271,7 +264,6 @@ header {
 /* CATALOG */
 .catalog {
     overflow: hidden;
-    border-top: 1px solid #C70709;
     position: relative;
     background-color: transparent;
 }
@@ -292,13 +284,16 @@ header {
 
 .slide-layers {
     display: flex;
-    flex-direction: column; /* Складываем этажи вертикально */
+    flex-direction: column;
+    /* Складываем этажи вертикально */
     height: 100%;
-    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); /* Плавный подъем */
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    /* Плавный подъем */
 }
 
 .layer {
-    flex: 0 0 100%; /* Каждый этаж занимает всю высоту слайда */
+    flex: 0 0 100%;
+    /* Каждый этаж занимает всю высоту слайда */
     width: 100%;
     position: relative;
     display: flex;
@@ -310,7 +305,8 @@ header {
 /* Слой "Изнанка" — картинка на весь экран */
 .layer.back img {
     width: 100%;
-    object-fit: cover; /* Чтобы фото заполнило всё пространство */
+    object-fit: cover;
+    /* Чтобы фото заполнило всё пространство */
 }
 
 .catalog.active-back .slide-layers {
@@ -480,10 +476,414 @@ header {
     transform: translateX(100%);
 }
 
-/* Меняем текст внутри бегунка в зависимости от состояния */
-/* .toggle-input:checked + .toggle-label .slider-text::before {
-  content: "изнанка";
+/* SKATEBOARD-CHEL */
+
+.skate-slider-viewport {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* Прячем слайды, которые не в фокусе */
+    background-color: #FFFFEE;
 }
-.toggle-input:not(:checked) + .toggle-label .slider-text::before {
-  content: "внешка";
-} */
+
+.skate-slider-track {
+    display: flex;
+    /* Выстраиваем слайды в ряд */
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Плавный довод */
+}
+
+.skate-slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.skate-slide img {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+}
+
+/* Красный фон-волна */
+.skate-slide::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background-color: var(--brand-red);
+    clip-path: polygon(0 30%, 25% 60%, 55% 25%, 85% 75%, 100% 40%, 100% 100%, 0 100%);
+    z-index: 1;
+}
+
+.skate-slide-content {
+    position: relative;
+    z-index: 10;
+    max-width: 500px;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: sans-serif;
+    /* Поменяй на свой шрифт */
+    color: #000;
+    text-align: left;
+    padding: 20px;
+}
+
+/* Стили кнопок */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    background: white;
+    border: 2px solid var(--brand-red);
+    color: var(--brand-red);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: var(--brand-red);
+    color: white;
+}
+
+.prev {
+    left: 30px;
+}
+
+.next {
+    right: 30px;
+}
+
+/* Скрываем кнопки, если слайдов нет */
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Review */
+
+.reviews-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #C70709;
+    padding: 80px 40px;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    /* Похож на шрифт в макете */
+}
+
+.reviews-title {
+    color: #FFFFEE;
+    font-family: 'A24', sans-serif;
+    line-height: normal;
+    font-weight: 400;
+    font-size: 110px;
+    margin: 20px 60px;
+}
+
+.reviews-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    /* Для мобильной версии */
+}
+
+.review-card {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Круглые аватарки */
+.avatar-wrapper {
+    width: 50%;
+    overflow: hidden;
+    /* Наплыв аватарки на текст */
+    z-index: 2;
+    border: 4px solid var(--brand-red);
+    margin-bottom: 15px;
+    /* Чтобы отделить от фона при необходимости */
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Белые плашки с текстом */
+.review-bubble {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border-radius: 30px;
+    width:90%;
+    height: 45%;
+    display: flex;
+    align-items: flex-start;
+    z-index: 1;
+}
+
+.review-bubble p {
+    font-size: 19px;
+    line-height: 1.2;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Адаптив под планшеты/телефоны */
+@media (max-width: 1024px) {
+    .reviews-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-card {
+        width: 80%;
+        margin-bottom: 50px;
+    }
+}
+
+/* FAQ */
+.faq-section {
+    background-color: #C70709;
+    padding: 40px 30px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    width: 100%;
+    /* height: calc(100vh - var(--header-height)); */
+height: 100vh;
+}
+
+.faq-title {
+    font-family: 'A24', sans-serif;
+    font-weight: 500;
+    font-size: 100px;
+    margin: 0 10px;
+    margin-bottom: 20px;
+    letter-spacing: 0;
+}
+
+.faq-container {
+    border: 1.5px solid white;
+    border-radius: 20px;
+    overflow: hidden;
+    
+}
+
+.faq-item {
+    border-bottom: 1.5px solid white;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 25px 30px;
+    font-size: 40px;
+    /* Чуть уменьшил, чтобы на ноутах не ломалось, было 40px */
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    transition: background 0.3s;
+}
+
+.faq-question:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Обертка для анимации высоты */
+.faq-answer-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* открытое состояние */
+.faq-item.active .faq-answer-wrapper {
+    max-height: 300px;
+    /* можно больше если текст длинный */
+}
+
+.faq-answer-content {
+    color: #000;
+    font-weight: 600;
+    background-color: #FFFFEE;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    display: flex;
+    justify-content: left;
+    padding: 25px 40px;
+}
+
+.faq-answer-content p {
+    width: 90%;
+}
+
+.faq-item.active .faq-answer-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.faq-answer-content p {
+    font-size: 33px;
+    /* Текст ответа чуть меньше заголовка для иерархии */
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Плюс */
+.faq-plus {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.4s ease;
+}
+
+.faq-plus::before,
+.faq-plus::after {
+    content: "";
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.faq-plus::before {
+    width: 100%;
+    height: 7px;
+}
+
+.faq-plus::after {
+    width: 7px;
+    height: 100%;
+}
+
+.faq-item.active .faq-plus {
+    transform: rotate(45deg);
+    /* Превращаем в крестик */
+}
+
+.faq-question {
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease,
+        background-color 0.2 linear;
+}
+
+.faq-question:active {
+    transform: scale(0.98);
+}
+
+
+/* CONTACTS */
+.contacts-section {
+    background-color: #C70709;
+    color: white;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contacts-container {
+    margin-left: 20px;
+    position: relative;
+    top: 20%;
+}
+
+.contacts-title {
+    font-family: 'A24', sans-serif; /* Тот самый акцентный шрифт */
+    font-size: 100px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.contacts-subtitle {
+    font-weight: 500;
+    margin-bottom: 50px;
+    font-size: 50px;
+}
+
+.contacts-info {
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+
+.contact-link, .contact-text {
+    display: flex;
+    display: block;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+/* Иконки соцсетей */
+.social-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    width: 15%;
+    justify-content: space-around;
+}
+
+.social-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s;
+}
+
+.social-btn img {
+    width: 80px; /* Размер самой иконки внутри круга */
+    height: auto;
+}
+
+.social-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .contacts-title { font-size: 50px; }
+    .contacts-subtitle { font-size: 24px; }
+    .contact-link, .contact-text { font-size: 20px; }
+    .social-btn { width: 50px; height: 50px; }
+}

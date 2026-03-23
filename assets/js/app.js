@@ -1,27 +1,5 @@
 
-const header = document.querySelector('.header');
-const marquee = document.querySelector('.marquee');
-const preview = document.querySelector('.preview');
 
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    const entry = entries[0];
-
-    if (entry.isIntersecting) {
-      // header.classList.add('scrolled');
-      marquee.classList.add('scrolled');
-    } else {
-      // header.classList.remove('scrolled');
-      marquee.classList.remove('scrolled');
-    }
-  },
-  {
-    threshold: 0.3
-  }
-);
-
-observer.observe(preview);
 
 
 
@@ -122,4 +100,62 @@ toggleInput.addEventListener('change', () => {
         // Если выбрали "Внешка"
         catalog.classList.remove('active-back');
     }
+});
+
+
+
+
+const skate_track = document.getElementById('skate-sliderTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let currentIndex = 0;
+const slidesCount = 3;
+
+function updateSlider() {
+    // Сдвигаем ленту
+    skate_track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Блокируем кнопки на границах
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === slidesCount - 1;
+}
+
+nextBtn.addEventListener('click', () => {
+    if (currentIndex < slidesCount - 1) {
+        currentIndex++;
+        updateSlider();
+    }
+});
+
+prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+    }
+});
+
+// Инициализация кнопок при загрузке
+updateSlider();
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Закрываем все открытые (если хочешь, чтобы одновременно был открыт только один)
+            faqItems.forEach(el => el.classList.remove('active'));
+
+            // Если кликнули по закрытому — открываем
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
 });
