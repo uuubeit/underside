@@ -1,0 +1,889 @@
+@font-face {
+    font-family: 'A24';
+    src: url("../fonts/A24-Regular.otf") format('opentype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("../fonts/Montserrat-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("../fonts/Montserrat-Medium.ttf") format('truetype');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("../fonts/Montserrat-SemiBold.ttf") format('truetype');
+    font-weight: 600;
+    font-display: swap;
+}
+
+:root {
+    --header-height: 115px;
+    --red: #C70709;
+    --cream: #FFFCEB;
+    --ratio: 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    /* Похожий на оригинал шрифт */
+    color: #C70709;
+    background-color: #FFFFEE;
+}
+
+.preview {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #C70709;
+    height: calc(100vh - var(--header-height));
+    position: relative;
+}
+
+header {
+    width: 100%;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+}
+
+.header {
+    background-color: #FFFFEE;
+    color: #C70709;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    transition: all 0.3s ease;
+
+}
+
+
+.marquee {
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
+    z-index: 5;
+    font-size: 40px;
+    background-color: #FFFFEE;
+    color: #C70709;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 40px;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+
+
+.marquee-track {
+    display: flex;
+    width: 100%;
+}
+
+/* чтобы текст не переносился */
+.marquee-track span {
+    white-space: nowrap;
+    animation: marquee 5s linear infinite;
+}
+
+
+/* КЛЮЧЕВОЕ */
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Текст */
+
+
+.menu-icon img {
+    cursor: pointer;
+    width: clamp(60px, 6vw, 100px);
+    height: auto;
+}
+
+
+.header-icons img {
+    margin: 0px 7px;
+    width: clamp(30px, 3.5vw, 60px);
+    height: auto;
+    cursor: pointer;
+}
+
+.logo {
+    font-family: 'A24', sans-serif;
+    line-height: 0.8;
+    font-size: clamp(70px, 10vw, 140px);
+}
+
+
+
+
+.intro {
+    margin: 0;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+}
+
+.container {
+    width: 100%;
+    height: calc(100vh - var(--header-height)/2);
+}
+
+.video-wrap {
+    pointer-events: none;
+    height: 100%;
+}
+
+.intro video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.preview-content {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#preview-content-left {
+    min-width: 40%;
+    max-width: 60%;
+}
+
+#preview-content-left img {
+    width: 100%;
+}
+
+#preview-content-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #FFFFEE;
+    font-size: 20px;
+    width: 40%;
+    min-height: 40%;
+}
+
+#preview-content-right * {
+    margin: 15px 0;
+}
+
+#preview-content-right button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: clamp(25px, 3vw, 50px);
+    background-color: #FFFFEE;
+    color: #C70709;
+    border-radius: 30px;
+    border: none;
+    padding: 15px 40px;
+    min-width: 40%;
+    max-width: 60%;
+}
+
+#preview-text-main {
+    font-size: clamp(25px, 3vw, 50px);
+    font-weight: 600;
+}
+
+#preview-text-second {
+    font-size: clamp(20px, 2.5vw, 40px);
+    font-weight: 500;
+}
+
+@media (max-width: 900px) {
+    .preview-content {
+        flex-direction: column;
+    }
+}
+
+/* ABOUT US */
+.about-us {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.about-us-content {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4vw;
+}
+
+.about-us-content-text {
+    width: 42%;
+    margin-right: 18%;
+}
+
+.about-us-content-text h2 {
+    font-family: 'A24', sans-serif;
+    line-height: 0.8;
+    font-size: clamp(30px, 4vw, 70px);
+    margin: 10px 0;
+}
+
+.about-us-content-text h3 {
+    color: black;
+    font-weight: 400;
+    font-size: clamp(15px, 1.8vw, 30px);
+}
+
+.about-us-content img {
+    width: 20%;
+}
+
+
+/* CATALOG */
+.catalog {
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+}
+
+.slider-color {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex: 0 0 100%;
+}
+
+.slide-layers {
+    display: flex;
+    flex-direction: column;
+    /* Складываем этажи вертикально */
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    /* Плавный подъем */
+}
+
+.layer {
+    flex: 0 0 100%;
+    /* Каждый этаж занимает всю высоту слайда */
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Слой "Изнанка" — картинка на весь экран */
+.layer.back img {
+    width: 100%;
+    object-fit: cover;
+    /* Чтобы фото заполнило всё пространство */
+}
+
+.catalog.active-back .slide-layers {
+    transform: translateY(-100%);
+}
+
+.title-color {
+    font-family: 'A24', sans-serif;
+    line-height: 0.8;
+    font-size: clamp(30px, 5.5vw, 80px);
+    margin: 20px 40px;
+}
+
+.slide-content {
+    width: 100%;
+}
+
+.slide-content-control {
+    padding-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.slide-button-left {
+    margin: 0 20px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.slide-button-right {
+    width: 40px;
+    margin: 0 20px;
+    cursor: pointer;
+
+}
+
+.slide img {
+    width: 55%;
+}
+
+.slide-price {
+    width: 25%;
+    position: absolute;
+    top: 46%;
+    left: 84%;
+    font-weight: 600;
+    font-size: clamp(30px, 5.5vw, 80px);
+    transform: translateX(-50%);
+    /* Центрируем саму обертку по горизонтали */
+
+}
+
+#catalog-buy-wrapper {
+    position: absolute;
+    /* Чтобы стояла на месте над слайдами */
+    left: 84%;
+    bottom: 30%;
+    transform: translateX(-50%);
+    /* Центрируем саму обертку по горизонтали */
+
+    display: flex;
+    justify-content: center;
+    /* Центровка по горизонтали */
+    align-items: center;
+    /* Центровка по вертикали */
+
+    width: 25%;
+    /* Укажите нужную ширину кнопки на экране */
+    cursor: pointer;
+    z-index: 100;
+}
+
+#catalog-buy-button {
+    width: 100%;
+    /* SVG растягивается на всю ширину обертки */
+    height: auto;
+    display: block;
+}
+
+.buy-text {
+    position: absolute;
+    /* Текст вырывается и ложится ПОВЕРХ SVG */
+    color: #fff;
+    /* Белый цвет текста */
+    font-size: 40px;
+    text-transform: lowercase;
+    pointer-events: none;
+    /* Чтобы клик по буквам срабатывал на кнопку под ними */
+
+    /* Если визуально кажется, что текст чуть ниже/выше из-за формы облака, 
+       можно подправить его вручную через margin: */
+    margin-top: -5px;
+}
+
+
+/* TOGGLE */
+.toggle-container {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    /* Или ваш шрифт */
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+}
+
+.toggle-input {
+    display: none;
+    /* Прячем стандартный чекбокс */
+}
+
+.toggle-label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 280px;
+    /* Настройте под себя */
+    height: 54px;
+    border: 1.5px solid var(--red);
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+}
+
+.toggle-text {
+    flex: 1;
+    text-align: center;
+    color: var(--red);
+    font-size: 24px;
+    font-weight: 600;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+/* Бегунок (красная пилюля) */
+.toggle-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background-color: rgba(255, 0, 0, 0);
+    border: 2px solid var(--red);
+    /* Рамка вокруг активного элемента */
+    border-radius: 40px;
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Текст внутри бегунка, чтобы он всегда был красным/жирным */
+.slider-text {
+    color: inherit;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+/* ЛОГИКА ПЕРЕКЛЮЧЕНИЯ */
+
+/* Перемещение бегунка вправо */
+.toggle-input:checked+.toggle-label .toggle-slider {
+    transform: translateX(100%);
+}
+
+/* SKATEBOARD-CHEL */
+
+.skate-slider-viewport {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* Прячем слайды, которые не в фокусе */
+    background-color: #FFFFEE;
+}
+
+.skate-slider-track {
+    display: flex;
+    /* Выстраиваем слайды в ряд */
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Плавный довод */
+}
+
+.skate-slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.skate-slide img {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+}
+
+/* Красный фон-волна */
+.skate-slide::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background-color: var(--brand-red);
+    clip-path: polygon(0 30%, 25% 60%, 55% 25%, 85% 75%, 100% 40%, 100% 100%, 0 100%);
+    z-index: 1;
+}
+
+.skate-slide-content {
+    position: relative;
+    z-index: 10;
+    max-width: 500px;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: sans-serif;
+    /* Поменяй на свой шрифт */
+    color: #000;
+    text-align: left;
+    padding: 20px;
+}
+
+/* Стили кнопок */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    background: white;
+    border: 2px solid var(--brand-red);
+    color: var(--brand-red);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: var(--brand-red);
+    color: white;
+}
+
+.prev {
+    left: 30px;
+}
+
+.next {
+    right: 30px;
+}
+
+/* Скрываем кнопки, если слайдов нет */
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Review */
+
+.reviews-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #C70709;
+    padding: 80px 40px;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    /* Похож на шрифт в макете */
+}
+
+.reviews-title {
+    color: #FFFFEE;
+    font-family: 'A24', sans-serif;
+    line-height: normal;
+    font-weight: 400;
+    font-size: 110px;
+    margin: 20px 60px;
+}
+
+.reviews-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    /* Для мобильной версии */
+}
+
+.review-card {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Круглые аватарки */
+.avatar-wrapper {
+    width: 50%;
+    overflow: hidden;
+    /* Наплыв аватарки на текст */
+    z-index: 2;
+    border: 4px solid var(--brand-red);
+    margin-bottom: 15px;
+    /* Чтобы отделить от фона при необходимости */
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Белые плашки с текстом */
+.review-bubble {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border-radius: 30px;
+    width:90%;
+    height: 45%;
+    display: flex;
+    align-items: flex-start;
+    z-index: 1;
+}
+
+.review-bubble p {
+    font-size: 19px;
+    line-height: 1.2;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Адаптив под планшеты/телефоны */
+@media (max-width: 1024px) {
+    .reviews-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-card {
+        width: 80%;
+        margin-bottom: 50px;
+    }
+}
+
+/* FAQ */
+.faq-section {
+    background-color: #C70709;
+    padding: 40px 30px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    width: 100%;
+    /* height: calc(100vh - var(--header-height)); */
+height: 100vh;
+}
+
+.faq-title {
+    font-family: 'A24', sans-serif;
+    font-weight: 500;
+    font-size: 100px;
+    margin: 0 10px;
+    margin-bottom: 20px;
+    letter-spacing: 0;
+}
+
+.faq-container {
+    border: 1.5px solid white;
+    border-radius: 20px;
+    overflow: hidden;
+    
+}
+
+.faq-item {
+    border-bottom: 1.5px solid white;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 25px 30px;
+    font-size: 40px;
+    /* Чуть уменьшил, чтобы на ноутах не ломалось, было 40px */
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    transition: background 0.3s;
+}
+
+.faq-question:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Обертка для анимации высоты */
+.faq-answer-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* открытое состояние */
+.faq-item.active .faq-answer-wrapper {
+    max-height: 300px;
+    /* можно больше если текст длинный */
+}
+
+.faq-answer-content {
+    color: #000;
+    font-weight: 600;
+    background-color: #FFFFEE;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    display: flex;
+    justify-content: left;
+    padding: 25px 40px;
+}
+
+.faq-answer-content p {
+    width: 90%;
+}
+
+.faq-item.active .faq-answer-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.faq-answer-content p {
+    font-size: 33px;
+    /* Текст ответа чуть меньше заголовка для иерархии */
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Плюс */
+.faq-plus {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.4s ease;
+}
+
+.faq-plus::before,
+.faq-plus::after {
+    content: "";
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.faq-plus::before {
+    width: 100%;
+    height: 7px;
+}
+
+.faq-plus::after {
+    width: 7px;
+    height: 100%;
+}
+
+.faq-item.active .faq-plus {
+    transform: rotate(45deg);
+    /* Превращаем в крестик */
+}
+
+.faq-question {
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease,
+        background-color 0.2 linear;
+}
+
+.faq-question:active {
+    transform: scale(0.98);
+}
+
+
+/* CONTACTS */
+.contacts-section {
+    background-color: #C70709;
+    color: white;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contacts-container {
+    margin-left: 20px;
+    position: relative;
+    top: 20%;
+}
+
+.contacts-title {
+    font-family: 'A24', sans-serif; /* Тот самый акцентный шрифт */
+    font-size: 100px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.contacts-subtitle {
+    font-weight: 500;
+    margin-bottom: 50px;
+    font-size: 50px;
+}
+
+.contacts-info {
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+
+.contact-link, .contact-text {
+    display: flex;
+    display: block;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+/* Иконки соцсетей */
+.social-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    width: 15%;
+    justify-content: space-around;
+}
+
+.social-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s;
+}
+
+.social-btn img {
+    width: 80px; /* Размер самой иконки внутри круга */
+    height: auto;
+}
+
+.social-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .contacts-title { font-size: 50px; }
+    .contacts-subtitle { font-size: 24px; }
+    .contact-link, .contact-text { font-size: 20px; }
+    .social-btn { width: 50px; height: 50px; }
+}
