@@ -14,13 +14,13 @@ function initObserver() {
       if (!entry.isIntersecting) {
         // header.classList.add('scrolled');
         header.classList.add('active');
-        menu_icon.setAttribute('src','/assets/icons/menu-icon-reverse.svg');
-        cart_icon.setAttribute('src','/assets/icons/cart-icon-reverse.svg');
+        menu_icon.setAttribute('src','assets/icons/menu-icon-reverse.svg');
+        cart_icon.setAttribute('src','assets/icons/cart-icon-reverse.svg');
       } else {
         // header.classList.remove('scrolled');
         header.classList.remove('active');
-        menu_icon.setAttribute('src','/assets/icons/menu-icon.svg');
-        cart_icon.setAttribute('src','/assets/icons/cart-icon.svg');
+        menu_icon.setAttribute('src','assets/icons/menu-icon.svg');
+        cart_icon.setAttribute('src','assets/icons/cart-icon.svg');
 
       }
     },
