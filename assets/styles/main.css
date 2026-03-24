@@ -502,7 +502,7 @@ header {
     transform: translateX(-50%);
 }
 
-#catalog-buy-wrapper {
+.catalog-buy-wrapper {
     position: absolute;
     right: -5%;
     top: 55%;
@@ -517,7 +517,7 @@ header {
 
 }
 
-#catalog-buy-button {
+.catalog-buy-button {
     width: 100%;
     height: auto;
     transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);

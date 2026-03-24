@@ -445,3 +445,16 @@ skateMenuLinks.forEach(link => {
     skateMobileMenu2.classList.remove('active');
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const buyButtons = document.querySelectorAll('.catalog-buy-wrapper');
+    
+    buyButtons.forEach(btn => {
+        // Делаем курсор пальчиком, чтобы было понятно, что это ссылка
+        btn.style.cursor = 'pointer';
+        
+        btn.addEventListener('click', () => {
+            window.location.href = 'page_not_found.html';
+        });
+    });
+});
