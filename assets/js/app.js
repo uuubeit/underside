@@ -306,6 +306,9 @@ function toggleMenu() {
 if (openMenuBtn) {
     openMenuBtn.addEventListener('click', toggleMenu);
 }
+if (openMenuBtn[1]) {
+    openMenuBtn.addEventListener('click', toggleMenu);
+}
 
 // Закрытие по кнопке "крестик" или по клику на оверлей
 closeMenuBtn.addEventListener('click', toggleMenu);
@@ -314,4 +317,32 @@ menuOverlay.addEventListener('click', toggleMenu);
 // Закрытие при клике на любую ссылку в меню
 menuLinks.forEach(link => {
     link.addEventListener('click', toggleMenu);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const openBtn = document.getElementById('menu-icon-mobile'); // Твой существующий ID
+    const closeBtn = document.getElementById('closeMobileMenu');
+    const mobLinks = document.querySelectorAll('.mob-link');
+
+    function toggleMobileMenu() {
+        mobileMenu.classList.toggle('active');
+        mobileOverlay.classList.toggle('active');
+        document.body.classList.toggle('stop-scrolling');
+    }
+
+    if (openBtn) {
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMobileMenu();
+        });
+    }
+
+    // Закрытие при клике на крестик, оверлей или ссылку
+    [closeBtn, mobileOverlay, ...mobLinks].forEach(el => {
+        if (el) {
+            el.addEventListener('click', toggleMobileMenu);
+        }
+    });
 });

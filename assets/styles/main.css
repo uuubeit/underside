@@ -1210,3 +1210,81 @@ header {
 body.no-scroll {
     overflow: hidden;
 }
+
+
+
+/* Мобильное меню */
+.mobile-side-menu {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Спрятано слева */
+    width: 100%; /* Не на весь экран, чтобы был виден оверлей */
+    height: 100%;
+    background-color: #FFFFEE;
+    z-index: 2000;
+    transition: transform 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.mobile-side-menu.active {
+    transform: translateX(100%);
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: none;
+    z-index: 1999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 30px 20px;
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 60px;
+}
+
+.mob-link {
+    color: #C70709;
+    text-decoration: none;
+    font-size: 40px; /* Крупно для пальцев */
+    letter-spacing: 1px;
+}
+
+.mobile-menu-footer {
+    margin-top: auto;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* Запрет скролла при открытом меню */
+body.stop-scrolling {
+    height: 100vh;
+    overflow: hidden;
+}
