@@ -141,19 +141,21 @@ track.addEventListener('transitionend', () => {
 // ------------------------------
 // Свайп для мобилки
 // ------------------------------
-track.addEventListener('touchstart', e => {
-  if (window.innerWidth > 768) return;
-  startX = e.touches[0].clientX;
+
+slides.forEach(slide => {
+  slide.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  });
+
+  slide.addEventListener('touchend', e => {
+    endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+
+    if (diff > 50) nextSlide();  // свайп влево
+    if (diff < -50) prevSlide(); // свайп вправо
+  });
 });
 
-track.addEventListener('touchend', e => {
-  if (window.innerWidth > 768) return;
-  endX = e.changedTouches[0].clientX;
-  const diff = startX - endX;
-
-  if (diff > 50) nextSlide();  // свайп влево
-  if (diff < -50) prevSlide(); // свайп вправо
-});
 
 // ------------------------------
 // Переключатель "Изнанка / Внешка"
@@ -165,41 +167,104 @@ toggleInput.addEventListener('change', () => {
   catalog.classList.toggle('active-back', toggleInput.checked);
 });
 
+const skatePositionsDesktop = [
+  { x: 8, y: 38, rotate: 0 },
+  { x: 45, y: 60, rotate: 15 },
+  { x: 85, y: 43, rotate: -10 }
+];
 
+const skatePositionsMobile = [
+  { x: 5, y: 35, rotate: 0 },
+  { x: 40, y: 55, rotate: 10 },
+  { x: 72, y: 32, rotate: -45 }
+];
 
+// ВАЖНО: это контейнер, а не все слайды
+const skateTrack = document.querySelector('.skate-sliderTrack');
+const skateSlides = document.querySelectorAll('.skate-slide');
 
-const skate_track = document.getElementById('skate-sliderTrack');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
+const skateSkater = document.getElementById('skater');
+const skatePrevBtn = document.getElementById('prevBtn-skater');
+const skateNextBtn = document.getElementById('nextBtn-skater');
 
-let currentIndex = 0;
-const slidesCount = 3;
+let skateCurrentIndex = 0;
+const skateSlidesCount = skateSlides.length;
 
-function updateSlider() {
-  // Сдвигаем ленту
-  skate_track.style.transform = `translateX(-${currentIndex * 100}%)`;
+let skateStartX = 0;
+let skateEndX = 0;
 
-  // Блокируем кнопки на границах
-  prevBtn.disabled = currentIndex === 0;
-  nextBtn.disabled = currentIndex === slidesCount - 1;
+// ------------------------------
+function skateGetPositions() {
+  return window.innerWidth <= 768
+    ? skatePositionsMobile
+    : skatePositionsDesktop;
 }
 
-nextBtn.addEventListener('click', () => {
-  if (currentIndex < slidesCount - 1) {
-    currentIndex++;
-    updateSlider();
-  }
-});
+// ------------------------------
+function skateUpdateSlider() {
+  // движение слайдов
+  skateTrack.style.transform = `translateX(-${skateCurrentIndex * 100}%)`;
 
-prevBtn.addEventListener('click', () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateSlider();
-  }
-});
+  // движение скейтера
+  const positions = skateGetPositions();
+  const pos = positions[skateCurrentIndex];
 
-// Инициализация кнопок при загрузке
-updateSlider();
+  skateSkater.style.transform =
+    `translate(${pos.x}vw, ${pos.y}vh) rotate(${pos.rotate}deg)`;
+
+  // кнопки
+  skatePrevBtn.disabled = skateCurrentIndex === 0;
+  skateNextBtn.disabled = skateCurrentIndex === skateSlidesCount - 1;
+}
+
+// ------------------------------
+function skateNextSlide() {
+  if (skateCurrentIndex < skateSlidesCount - 1) {
+    skateCurrentIndex++;
+    skateUpdateSlider();
+  }
+}
+
+function skatePrevSlide() {
+  if (skateCurrentIndex > 0) {
+    skateCurrentIndex--;
+    skateUpdateSlider();
+  }
+}
+
+// ------------------------------
+// кнопки
+// ------------------------------
+skateNextBtn.addEventListener('click', skateNextSlide);
+skatePrevBtn.addEventListener('click', skatePrevSlide);
+
+// ------------------------------
+// свайп (ТОЛЬКО на контейнере)
+// ------------------------------
+skateTrack.addEventListener('touchstart', e => {
+  skateStartX = e.touches[0].clientX;
+}, { passive: true });
+
+skateTrack.addEventListener('touchend', e => {
+  skateEndX = e.changedTouches[0].clientX;
+
+  const diff = skateStartX - skateEndX;
+
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) skateNextSlide();
+    else skatePrevSlide();
+  }
+}, { passive: true });
+
+// ------------------------------
+skateSkater.style.transition = "transform 0.5s ease-in-out";
+
+// ------------------------------
+window.addEventListener('resize', skateUpdateSlider);
+
+// ------------------------------
+skateUpdateSlider();
+
 
 
 

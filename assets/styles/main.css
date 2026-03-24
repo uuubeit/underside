@@ -48,11 +48,11 @@ body {
 }
 
 .mobile {
-    /* display: none; */
+    display: none;
 }
 
 .unmobile {
-    display:inherit;
+    display: inherit;
 }
 
 /* ================= HEADER ================= */
@@ -113,7 +113,7 @@ header {
     src: url("../icons/menu-icon-reverse.svg");
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .mobile {
         display: block;
     }
@@ -247,7 +247,7 @@ header {
     transform: scale(0.95);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .preview-content {
         flex-direction: column;
         text-align: center;
@@ -505,6 +505,15 @@ header {
 
 }
 
+.slide img {
+    user-select: none;
+    /* нельзя выделять текст */
+    -webkit-user-drag: none;
+    /* отключает “таскание” на iOS и Chrome */
+    pointer-events: none;
+    /* опционально, если картинка не требует клика */
+}
+
 @media (max-width: 768px) {
     .catalog {
         background-color: #C70709;
@@ -516,26 +525,30 @@ header {
         font-family: 'A24', sans-serif;
         font-size: clamp(40px, 18vw, 100px);
         margin-top: 15%;
-        margin-left:5% ;
+        margin-left: 5%;
 
     }
+
     .underside {
         margin-top: 10%;
         height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: left;
+        width: 100%;
     }
+
     .underside::before {
         content: "изнанка ";
         font-family: 'A24', sans-serif;
         font-size: clamp(40px, 18vw, 100px);
         margin-top: 15%;
         margin-bottom: 5%;
-        margin-left:5% ;
+        margin-left: 5%;
 
     }
-    .underside img{
+
+    .underside img {
         width: 100%;
         /* height: 100vh; */
     }
@@ -545,12 +558,14 @@ header {
         text-align: center;
         margin-top: 20px;
     }
-    .slide-content{
+
+    .slide-content {
         padding: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
+
     #catalog-buy-wrapper {
         position: relative;
         top: 0;
@@ -558,20 +573,24 @@ header {
         transform: none;
         margin-top: 2%;
     }
-    .slide-layers{
-    }
+
+    .slide-layers {}
+
     .layer {
         width: 100%;
     }
-    .layer.front{
+
+    .layer.front {
         /* margin-top: -20%; */
         position: relative;
         top: -10%;
     }
+
     .title-color {
         font-size: clamp(40px, 14vw, 140px);
         margin: 20px 5px;
     }
+
     .slide-content-control {
         color: #C70709;
         display: flex;
@@ -581,32 +600,45 @@ header {
         background-color: #FFFFEE;
         width: 80%;
     }
-    .slide-content-control img{
+
+    .slide-content-control img {
         width: 80%;
-        
+
     }
-    .slide-content-control svg{
+
+    .slide-content-control svg {
         display: none;
     }
-    .slide-price{
+
+    .slide-price {
         transform: translateX(0);
         width: 60%;
         margin-top: 10%;
         font-size: clamp(40px, 11vw, 140px);
 
     }
+
     .buy-text {
         color: #C70709;
     }
-    #catalog-buy-button path{
+
+    #catalog-buy-button path {
         fill: #FFFFEE;
     }
-    #track {
-    touch-action: none;
-    will-change: transform;
-  }
-  
 
+    #track {
+        touch-action: pan-y;
+        will-change: transform;
+    }
+
+
+}
+
+#track {
+    touch-action: pan-y;
+    /* разрешаем вертикальный скролл, свайп горизонтально JS */
+    -webkit-overflow-scrolling: touch;
+    /* плавность на iOS */
 }
 
 /* ================= TOGGLE ================= */
@@ -615,7 +647,7 @@ header {
     bottom: clamp(20px, 5vh, 40px);
     left: 50%;
     transform: translateX(-50%);
-    z-index: 101;
+    z-index: 5;
 }
 
 .toggle-input {
@@ -673,12 +705,20 @@ header {
 .skate-slider-viewport {
     position: relative;
     width: 100%;
-    min-height: 50vh;
+    height: 100vh;
     overflow: hidden;
     background-color: #FFFFEE;
+    background: url('/assets/media/road.png');
+    object-fit: contain;
+    background-repeat: no-repeat;
+    /* Чтобы картинка не дублировалась */
+    background-size: cover;
+    /* Чтобы картинка заполнила весь блок */
+    background-position: center;
 }
 
-.skate-slider-track {
+.skate-sliderTrack {
+    margin-top: 20%;
     display: flex;
     height: 100%;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
@@ -687,10 +727,16 @@ header {
 .skate-slide {
     width: 100%;
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
+}
+
+.skate-slide p {
+    position: relative;
+    left: 30%;
+    color: #000;
+    font-size: clamp(30px, 2.5vw, 50px);
+    width: 60%;
+    font-weight: 600;
 }
 
 .skate-slide img {
@@ -699,38 +745,98 @@ header {
     object-fit: cover;
 }
 
+#skater {
+    position: absolute;
+    z-index: 5;
+    transition: transform 0.5s ease;
+    /* плавное движение */
+}
+
+
+#skater img {
+    width: 8vw;
+}
+
 .nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 100;
-    background: white;
-    border: 2px solid var(--red);
-    color: var(--red);
-    width: clamp(35px, 5vw, 50px);
-    height: clamp(35px, 5vw, 50px);
-    border-radius: 50%;
+    z-index: 10;
+
+    /* Сбрасываем дефолтные стили */
+    background: transparent;
+    border: none;
     cursor: pointer;
-    font-size: clamp(16px, 2vw, 20px);
-    transition: all 0.2s;
+    padding: 0;
+
+    /* Управляем размером кнопки через переменную для удобства */
+    --btn-size: clamp(40px, 8vw, 70px);
+    width: 4vw;
+    height: calc(var(--btn-size) * 2);
+    /* Соотношение сторон под твои SVG */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-btn:hover {
-    background: var(--red);
-    color: white;
+@media (max-width: 768px) {
+    .skate-slider-viewport {
+        background: url('/assets/media/road-mobile.png');
+        background-repeat: no-repeat;
+        /* Чтобы картинка не дублировалась */
+        background-size: cover;
+        /* Чтобы картинка заполнила весь блок */
+        background-position: center;
+    }
+    #skater img{
+        width:  20vw;
+    }
 }
 
+
+/* Стили для самих SVG внутри кнопок */
+.nav-btn svg {
+    width: 100%;
+    height: auto;
+    transition: stroke-width 0.3s ease, transform 0.3s ease;
+}
+
+/* Позиционирование */
 .prev {
-    left: clamp(10px, 3vw, 30px);
+    left: clamp(10px, 2vw, 30px);
 }
 
 .next {
-    right: clamp(10px, 3vw, 30px);
+    right: clamp(10px, 2vw, 30px);
 }
 
+/* Эффекты при наведении */
+.nav-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+/* Меняем толщину линии при наведении, если хочешь добавить дерзости */
+.nav-btn:hover path {
+    stroke-width: 8px;
+    /* Линия становится жирнее */
+}
+
+/* Эффект для неактивных кнопок (если слайдер закончился) */
 .nav-btn:disabled {
-    opacity: 0.3;
+    opacity: 0.2;
     cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+/* Небольшой фикс для мобилок: убираем синий контур при нажатии */
+.nav-btn:focus {
+    outline: none;
 }
 
 /* ================= REVIEWS ================= */
@@ -739,7 +845,6 @@ header {
     flex-direction: column;
     justify-content: center;
     background-color: var(--red);
-    padding: clamp(40px, 8vw, 80px) clamp(15px, 4vw, 40px);
     min-height: 100vh;
 }
 
@@ -754,7 +859,7 @@ header {
 
 .reviews-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: clamp(20px, 3vw, 30px);
     flex-wrap: wrap;
 }
@@ -762,20 +867,16 @@ header {
 .review-card {
     flex: 1;
     min-width: 280px;
-    max-width: 400px;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .avatar-wrapper {
-    width: clamp(100px, 15vw, 180px);
-    aspect-ratio: 1;
+    width: clamp(100px, 20vw, 250px);
     overflow: hidden;
     z-index: 2;
-    border: 4px solid var(--red);
-    border-radius: 50%;
-    margin-bottom: -20px;
     /* Наплыв на плашку */
 }
 
@@ -788,25 +889,33 @@ header {
 .review-bubble {
     background-color: white;
     color: black;
-    padding: clamp(30px, 4vw, 40px) clamp(20px, 3vw, 30px) clamp(20px, 3vw, 30px);
+    padding: 20px;
     border-radius: 30px;
     width: 100%;
-    flex-grow: 1;
+    flex-grow: 0.9;
     /* Карточки одной высоты */
     display: flex;
     align-items: flex-start;
     z-index: 1;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .review-bubble p {
     font-size: clamp(14px, 1.5vw, 19px);
-    line-height: 1.4;
     font-weight: 500;
     margin: 0;
-    text-align: center;
 }
 
+
+@media (max-width: 768px) {
+    .avatar-wrapper{
+        width: 40vw;
+    margin-bottom: 5vw;
+    }
+    .review-bubble{
+        width: 80%;
+        margin-bottom: 10vw;
+    }
+}
 /* ================= FAQ ================= */
 .faq-section {
     background-color: var(--red);
@@ -1008,4 +1117,17 @@ header {
 .social-btn:hover {
     transform: scale(1.1);
     opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .mobile {
+        display: block;
+    }
+
+    .unmobile {
+        display: none;
+    }
+    .faq-title{
+        font-size: clamp(40px, 12vw, 80px);
+    }
 }
