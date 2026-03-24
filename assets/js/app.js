@@ -400,3 +400,30 @@ const myScrolls = {
 };
 
 setupSmoothScroll(myScrolls);
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const introVideo = document.querySelector('.video-wrap video');
+    const header = document.getElementById('header');
+    const preview = document.querySelector('.preview');
+
+    if (introVideo) {
+        // Когда видео закончилось
+        introVideo.onended = function() {
+            header.classList.add('visible');
+            preview.classList.add('visible');
+            
+            // Если нужно, чтобы видео после проигрывания плавно исчезло:
+            // document.querySelector('.intro').style.display = 'none';
+        };
+
+        // На случай, если видео не загрузится или заблокируется браузером,
+        // добавим страховку: если через 10 секунд ничего не произошло — показываем сайт
+        setTimeout(() => {
+            header.classList.add('visible');
+            preview.classList.add('visible');
+        }, 10000); 
+    }
+});

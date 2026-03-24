@@ -24,6 +24,20 @@
     font-weight: 600;
     font-display: swap;
 }
+/* Начальное состояние: скрыто */
+.header, 
+.preview {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.2s ease-in-out; /* Плавность появления */
+}
+
+/* Состояние после окончания видео */
+.header.visible, 
+.preview.visible {
+    opacity: 1;
+    pointer-events: all;
+}
 
 :root {
     --header-height: clamp(70px, 10vw, 115px);
