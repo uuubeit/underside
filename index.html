@@ -10,10 +10,22 @@
 </head>
 
 <body>
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <button class="menu-close-btn" id="closeMenu">&times;</button>
+        </div>
+        <nav class="menu-content">
+            <a href="#about" class="menu-link">о нас</a>
+            <a href="#catalog" class="menu-link">каталог</a>
+            <a href="#faq" class="menu-link">faq</a>
+            <a href="#contacts" class="menu-link">контакты</a>
+        </nav>
+    </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
     <header>
         <div class="header" id="header">
             <div class="header-left">
-                <div class="menu-icon unmobile">
+                <div class="menu-icon unmobile menu-open-btn">
                     <img src="assets/icons/menu-icon.svg" alt="arrow">
                 </div>
             </div>
@@ -27,7 +39,7 @@
                     <a href="varya.fedorova.06@list.ru"><img src="assets/icons/main-icon.svg" alt="arrow"></a>
                     <a href="page_not_found.html"><img id="cart-icon-mobile" src="assets/icons/cart-icon.svg"
                             alt="arrow"></a>
-                    <div class="menu-icon mobile">
+                    <div class="menu-icon mobile menu-open-btn">
                         <img id="menu-icon-mobile" src="assets/icons/menu-icon.svg" alt="arrow">
                     </div>
                 </div>

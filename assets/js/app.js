@@ -287,3 +287,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+// Логика бургер-меню
+const sideMenu = document.getElementById('sideMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const openMenuBtn = document.querySelector('.menu-icon'); // Убедись, что этот класс у иконки в хедере
+const closeMenuBtn = document.getElementById('closeMenu');
+const menuLinks = document.querySelectorAll('.menu-link');
+
+function toggleMenu() {
+    sideMenu.classList.toggle('open');
+    menuOverlay.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+}
+
+// Открытие по клику на иконку
+if (openMenuBtn) {
+    openMenuBtn.addEventListener('click', toggleMenu);
+}
+
+// Закрытие по кнопке "крестик" или по клику на оверлей
+closeMenuBtn.addEventListener('click', toggleMenu);
+menuOverlay.addEventListener('click', toggleMenu);
+
+// Закрытие при клике на любую ссылку в меню
+menuLinks.forEach(link => {
+    link.addEventListener('click', toggleMenu);
+});
