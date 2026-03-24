@@ -427,3 +427,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10000); 
     }
 });
+const skateMenu = document.querySelector('.side-menu');
+const skateMenu2 = document.querySelector('.menu-overlay');
+const skateMobileMenu = document.querySelector('.mobile-side-menu');
+  const skateMobileMenu2= document.querySelector('.mobile-overlay ');
+
+// все кликабельные пункты внутри меню
+const skateMenuLinks = document.querySelectorAll('.side-menu a, .mobile-side-menu a');
+
+skateMenuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    skateMenu.classList.remove('active');
+    skateMenu.classList.remove('open');
+    skateMenu2.classList.remove('active');
+    skateMobileMenu.classList.remove('active');
+    skateMobileMenu.classList.remove('open');
+    skateMobileMenu2.classList.remove('active');
+  });
+});
