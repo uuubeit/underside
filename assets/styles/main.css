@@ -786,7 +786,7 @@ header {
 
 @media (max-width: 768px) {
     .skate-slider-viewport {
-        background: url('assets/media/road-mobile.png');
+        background: url('../media/road-mobile.png');
         background-repeat: no-repeat;
         /* Чтобы картинка не дублировалась */
         background-size: cover;
@@ -1147,7 +1147,8 @@ header {
     left: -100%; /* Прячем за левым краем */
     width: 300px;
     height: 100%;
-    background-color: var(--red); /* Или черный, как на скрине */
+    color: #C70709;
+    background-color: #FFFFEE; /* Или черный, как на скрине */
     z-index: 1001;
     transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 40px 25px;
@@ -1181,7 +1182,6 @@ header {
 .menu-close-btn {
     background: none;
     border: none;
-    color: white;
     font-size: 40px;
     cursor: pointer;
     align-self: flex-start;
@@ -1195,8 +1195,7 @@ header {
 }
 
 .menu-link {
-    font-family: 'A24', sans-serif;
-    color: white;
+    color: #C70709;
     text-decoration: none;
     font-size: 32px;
     text-transform: uppercase;
