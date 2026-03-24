@@ -597,7 +597,7 @@ header {
         align-items: center;
     }
 
-    #catalog-buy-wrapper {
+    .catalog-buy-wrapper {
         position: relative;
         top: 0;
         right: 0;
