@@ -602,9 +602,10 @@ header {
         fill: #FFFFEE;
     }
     #track {
-    touch-action: pan-y;
+    touch-action: none;
     will-change: transform;
   }
+  
 
 }
 
