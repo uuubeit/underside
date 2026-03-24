@@ -122,16 +122,19 @@ header {
         display: none;
     }
 
-    .header-icons img {
+    .header-icons a {
         display: none;
     }
 
-    .header-icons img:last-child {
+    .header-icons a:last-of-type {
         display: block;
+    }
+    .header-icons img{
+        width: clamp(20px, 7.5vw, 60px);
     }
 
     .menu-icon img,
-    .header-icons img {
+    .header-icons a  {
         width: clamp(30px, 9vw, 60px);
         margin: 0px 5px;
     }
@@ -793,6 +796,11 @@ header {
     #skater img{
         width:  20vw;
     }
+.skate-slide p {
+    font-size: clamp(20px, 2.5vw, 50px);
+    width: 80%;
+    margin-left: -20%;
+}
 }
 
 
