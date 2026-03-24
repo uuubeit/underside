@@ -53,106 +53,116 @@ media.addEventListener("change", (e) => {
 });
 
 
+
+
+
+// ------------------------------
+// Слайдер
+// ------------------------------
 const track = document.getElementById('track');
-const slides = Array.from(track.children);
-const btnLeft = document.getElementsByClassName('slide-button-left');
-const btnRight = document.getElementsByClassName('slide-button-right');
+let slides = Array.from(track.children);
 
-let touchStartX = 0;
-let touchEndX = 0;
-
-track.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-
-track.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleSwipe();
-});
-
-function handleSwipe() {
-  if (touchStartX - touchEndX > 50) {
-    // Свайп влево -> следующий слайд
-    btnRight.click();
-  }
-  if (touchEndX - touchStartX > 50) {
-    // Свайп вправо -> предыдущий слайд
-    btnLeft.click();
-  }
-}
-
-// 1. Клонируем элементы
+// Клонируем первый и последний слайд для бесконечности
 const firstClone = slides[0].cloneNode(true);
 const lastClone = slides[slides.length - 1].cloneNode(true);
-
-// 2. Добавляем клоны в начало и конец
 track.appendChild(firstClone);
 track.prepend(lastClone);
 
-// 3. Начальные настройки
-let index = 1; // Начинаем с 1, так как на 0 позиции теперь клон последнего слайда
-const slideWidth = 100; // в процентах
+// Пересобираем массив слайдов с клонами
+slides = Array.from(track.children);
 
-// Устанавливаем начальную позицию на настоящий первый слайд
-track.style.transform = `translateX(-${index * slideWidth}%)`;
+let index = 1; // начинаем с 1, потому что на 0 теперь клон последнего
+let startX = 0;
+let endX = 0;
 
+// ------------------------------
+// Адаптивная ширина слайдов
+// ------------------------------
+function setSlideWidth() {
+  slides.forEach(slide => {
+    slide.style.minWidth = `${100}%`;
+  });
+  moveSlider(false);
+}
+
+window.addEventListener('resize', setSlideWidth);
+setSlideWidth();
+
+// ------------------------------
+// Функция движения слайдера
+// ------------------------------
 function moveSlider(withTransition = true) {
   if (withTransition) {
-    track.style.transition = "transform 0.5s ease-in-out";
+    track.style.transition = 'transform 0.5s ease-in-out';
   } else {
-    track.style.transition = "none";
+    track.style.transition = 'none';
   }
-  track.style.transform = `translateX(-${index * slideWidth}%)`;
+  track.style.transform = `translateX(-${index * 100}%)`;
 }
 
-// 4. Обработка кнопок
-for (const btn of btnRight) {
-  btn.addEventListener('click', () => {
-    if (index >= track.children.length - 1) return; // Защита от лишних кликов
-    index++;
-    moveSlider();
-  });
-
+// ------------------------------
+// Функции для кнопок / свайпа
+// ------------------------------
+function nextSlide() {
+  if (index >= slides.length - 1) return;
+  index++;
+  moveSlider();
 }
 
-for (const btn of btnLeft) {
-
-  btn.addEventListener('click', () => {
-    if (index <= 0) return;
-    index--;
-    moveSlider();
-  });
+function prevSlide() {
+  if (index <= 0) return;
+  index--;
+  moveSlider();
 }
 
-// 5. Магия бесконечности: следим за окончанием анимации
+// ------------------------------
+// Кнопки
+// ------------------------------
+const btnLeft = document.querySelectorAll('.slide-button-left');
+const btnRight = document.querySelectorAll('.slide-button-right');
+
+btnRight.forEach(btn => btn.addEventListener('click', nextSlide));
+btnLeft.forEach(btn => btn.addEventListener('click', prevSlide));
+
+// ------------------------------
+// Бесконечность
+// ------------------------------
 track.addEventListener('transitionend', () => {
-  // Если мы на последнем клоне (копия первого)
-  if (track.children[index] === firstClone) {
-    index = 1; // Прыгаем на настоящий первый
-    moveSlider(false); // Прыгаем без анимации
+  if (slides[index] === firstClone) {
+    index = 1;
+    moveSlider(false);
   }
-
-  // Если мы на первом клоне (копия последнего)
-  if (track.children[index] === lastClone) {
-    index = track.children.length - 2; // Прыгаем на настоящий последний
-    moveSlider(false); // Прыгаем без анимации
+  if (slides[index] === lastClone) {
+    index = slides.length - 2;
+    moveSlider(false);
   }
 });
 
+// ------------------------------
+// Свайп для мобилки
+// ------------------------------
+track.addEventListener('touchstart', e => {
+  if (window.innerWidth > 768) return;
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener('touchend', e => {
+  if (window.innerWidth > 768) return;
+  endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
+
+  if (diff > 50) nextSlide();  // свайп влево
+  if (diff < -50) prevSlide(); // свайп вправо
+});
+
+// ------------------------------
+// Переключатель "Изнанка / Внешка"
+// ------------------------------
 const toggleInput = document.getElementById('mode-toggle');
-const buyButton = document.getElementById('catalog-buy-button');
 const catalog = document.querySelector('.catalog');
 
 toggleInput.addEventListener('change', () => {
-  if (toggleInput.checked) {
-    // Если выбрали "Изнанка"
-    catalog.classList.add('active-back');
-    buyButton.classList.add('active-back');
-  } else {
-    // Если выбрали "Внешка"
-    catalog.classList.remove('active-back');
-    buyButton.classList.remove('active-back');
-  }
+  catalog.classList.toggle('active-back', toggleInput.checked);
 });
 
 
