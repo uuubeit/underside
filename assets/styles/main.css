@@ -909,6 +909,7 @@ header {
 }
 
 .review-bubble {
+    text-wrap: balance;
     background-color: white;
     color: black;
     padding: 20px;
