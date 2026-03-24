@@ -396,6 +396,7 @@ const myScrolls = {
     'delivery-mobile': 'deliv',
     'cont-mobile': 'obratka',
     'question-mobile': 'faq',
+    'mne_nado': 'catalg',
     // Можно добавлять сколько угодно
 };
 
