@@ -191,7 +191,6 @@ let skateCurrentIndex = 0;
 const skateSlidesCount = skateSlides.length;
 
 let skateStartX = 0;
-let skateEndX = 0;
 
 // ------------------------------
 function skateGetPositions() {
@@ -240,13 +239,26 @@ skatePrevBtn.addEventListener('click', skatePrevSlide);
 
 // ------------------------------
 // свайп (ТОЛЬКО на контейнере)
-// ------------------------------
+// ------------------------------let skateStartX = 0;
+let skateEndX = 0;
+let skateIsSwiping = false;
+
 skateTrack.addEventListener('touchstart', e => {
   skateStartX = e.touches[0].clientX;
+  skateIsSwiping = true;
 }, { passive: true });
 
-skateTrack.addEventListener('touchend', e => {
-  skateEndX = e.changedTouches[0].clientX;
+skateTrack.addEventListener('touchmove', e => {
+  if (!skateIsSwiping) return;
+
+  skateEndX = e.touches[0].clientX;
+
+  // ❗ блокируем скролл страницы во время свайпа
+  e.preventDefault();
+}, { passive: false });
+
+skateTrack.addEventListener('touchend', () => {
+  if (!skateIsSwiping) return;
 
   const diff = skateStartX - skateEndX;
 
@@ -254,7 +266,9 @@ skateTrack.addEventListener('touchend', e => {
     if (diff > 0) skateNextSlide();
     else skatePrevSlide();
   }
-}, { passive: true });
+
+  skateIsSwiping = false;
+});
 
 // ------------------------------
 skateSkater.style.transition = "transform 0.5s ease-in-out";
@@ -420,8 +434,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // document.querySelector('.intro').style.display = 'none';
         };
 
-        // На случай, если видео не загрузится или заблокируется браузером,
-        // добавим страховку: если через 10 секунд ничего не произошло — показываем сайт
         setTimeout(() => {
             header.classList.add('visible');
             preview.classList.add('visible');
@@ -433,7 +445,6 @@ const skateMenu2 = document.querySelector('.menu-overlay');
 const skateMobileMenu = document.querySelector('.mobile-side-menu');
   const skateMobileMenu2= document.querySelector('.mobile-overlay ');
 
-// все кликабельные пункты внутри меню
 const skateMenuLinks = document.querySelectorAll('.side-menu a, .mobile-side-menu a');
 
 skateMenuLinks.forEach(link => {
@@ -451,7 +462,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const buyButtons = document.querySelectorAll('.catalog-buy-wrapper');
     
     buyButtons.forEach(btn => {
-        // Делаем курсор пальчиком, чтобы было понятно, что это ссылка
         btn.style.cursor = 'pointer';
         
         btn.addEventListener('click', () => {

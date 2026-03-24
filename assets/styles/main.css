@@ -1302,7 +1302,7 @@ body.no-scroll {
 .mob-link {
     color: #C70709;
     text-decoration: none;
-    font-size: 40px; /* Крупно для пальцев */
+    font-size: 40px;
     letter-spacing: 1px;
 }
 
