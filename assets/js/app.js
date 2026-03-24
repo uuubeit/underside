@@ -346,3 +346,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+/**
+ * Функция для настройки плавного скролла
+ * @param {Object} scrollMap - Объект, где ключ это ID кнопки, а значение - ID блока
+ */
+function setupSmoothScroll(scrollMap) {
+    const header = document.getElementById('header');
+    const headerHeight = header ? header.offsetHeight : 0;
+
+    Object.entries(scrollMap).forEach(([buttonId, sectionId]) => {
+        const btn = document.getElementById(buttonId);
+        const section = document.getElementById(sectionId);
+
+        if (btn && section) {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Предотвращаем резкий прыжок по якорю
+
+                // Вычисляем позицию с учетом высоты шапки
+                const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = sectionPosition - headerHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Если меню открыто (мобильное), закрываем его при клике (опционально)
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    // вызываем функцию закрытия, которую мы писали ранее
+                    toggleMobileMenu(); 
+                }
+            });
+        }
+    });
+}
+
+// ИСПОЛЬЗОВАНИЕ:
+// Просто перечисли ID своих кнопок и куда им скроллить
+const myScrolls = {
+    'who-is': 'about-us',
+    'na': 'catalg',
+    'delivery': 'deliv',
+    'cont': 'obratka',
+    'question': 'faq',
+    'who-is-mobile': 'about-us',
+    'na-mobile': 'catalg',
+    'delivery-mobile': 'deliv',
+    'cont-mobile': 'obratka',
+    'question-mobile': 'faq',
+    // Можно добавлять сколько угодно
+};
+
+setupSmoothScroll(myScrolls);
