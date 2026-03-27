@@ -1,10 +1,23 @@
+const preloader = document.getElementById('preloader');
+const video = document.querySelector('#intro_video');
+
+function hidePreloader() {
+  preloader.classList.add('hidden');
+  document.body.classList.remove('loading');
+}
+
+// когда видео готово полностью
+video.addEventListener('canplaythrough', () => {
+  hidePreloader();
+});
+
 let observer;
 
 function initObserver() {
   const header = document.getElementById('header');
   const menu_icon = document.getElementById('menu-icon-mobile');
   const cart_icon = document.getElementById('cart-icon-mobile');
-  const headerHeight=header.offsetHeight;
+  const headerHeight = header.offsetHeight;
   const block = document.getElementsByClassName('preview')[0];
 
   const observer = new IntersectionObserver(
@@ -14,18 +27,18 @@ function initObserver() {
       if (!entry.isIntersecting) {
         // header.classList.add('scrolled');
         header.classList.add('active');
-        menu_icon.setAttribute('src','assets/icons/menu-icon-reverse.svg');
-        cart_icon.setAttribute('src','assets/icons/cart-icon-reverse.svg');
+        menu_icon.setAttribute('src', 'assets/icons/menu-icon-reverse.svg');
+        cart_icon.setAttribute('src', 'assets/icons/cart-icon-reverse.svg');
       } else {
         // header.classList.remove('scrolled');
         header.classList.remove('active');
-        menu_icon.setAttribute('src','assets/icons/menu-icon.svg');
-        cart_icon.setAttribute('src','assets/icons/cart-icon.svg');
+        menu_icon.setAttribute('src', 'assets/icons/menu-icon.svg');
+        cart_icon.setAttribute('src', 'assets/icons/cart-icon.svg');
 
       }
     },
     {
-  rootMargin: `-${headerHeight}px 0px 0px 0px`
+      rootMargin: `-${headerHeight}px 0px 0px 0px`
 
     }
   );
@@ -311,17 +324,17 @@ const closeMenuBtn = document.getElementById('closeMenu');
 const menuLinks = document.querySelectorAll('.menu-link');
 
 function toggleMenu() {
-    sideMenu.classList.toggle('open');
-    menuOverlay.classList.toggle('active');
-    document.body.classList.toggle('no-scroll');
+  sideMenu.classList.toggle('open');
+  menuOverlay.classList.toggle('active');
+  document.body.classList.toggle('no-scroll');
 }
 
 // Открытие по клику на иконку
 if (openMenuBtn) {
-    openMenuBtn.addEventListener('click', toggleMenu);
+  openMenuBtn.addEventListener('click', toggleMenu);
 }
 if (openMenuBtn[1]) {
-    openMenuBtn.addEventListener('click', toggleMenu);
+  openMenuBtn.addEventListener('click', toggleMenu);
 }
 
 // Закрытие по кнопке "крестик" или по клику на оверлей
@@ -330,35 +343,35 @@ menuOverlay.addEventListener('click', toggleMenu);
 
 // Закрытие при клике на любую ссылку в меню
 menuLinks.forEach(link => {
-    link.addEventListener('click', toggleMenu);
+  link.addEventListener('click', toggleMenu);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileOverlay = document.getElementById('mobileOverlay');
-    const openBtn = document.getElementById('menu-icon-mobile'); // Твой существующий ID
-    const closeBtn = document.getElementById('closeMobileMenu');
-    const mobLinks = document.querySelectorAll('.mob-link');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  const openBtn = document.getElementById('menu-icon-mobile'); // Твой существующий ID
+  const closeBtn = document.getElementById('closeMobileMenu');
+  const mobLinks = document.querySelectorAll('.mob-link');
 
-    function toggleMobileMenu() {
-        mobileMenu.classList.toggle('active');
-        mobileOverlay.classList.toggle('active');
-        document.body.classList.toggle('stop-scrolling');
-    }
+  function toggleMobileMenu() {
+    mobileMenu.classList.toggle('active');
+    mobileOverlay.classList.toggle('active');
+    document.body.classList.toggle('stop-scrolling');
+  }
 
-    if (openBtn) {
-        openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleMobileMenu();
-        });
-    }
-
-    // Закрытие при клике на крестик, оверлей или ссылку
-    [closeBtn, mobileOverlay, ...mobLinks].forEach(el => {
-        if (el) {
-            el.addEventListener('click', toggleMobileMenu);
-        }
+  if (openBtn) {
+    openBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleMobileMenu();
     });
+  }
+
+  // Закрытие при клике на крестик, оверлей или ссылку
+  [closeBtn, mobileOverlay, ...mobLinks].forEach(el => {
+    if (el) {
+      el.addEventListener('click', toggleMobileMenu);
+    }
+  });
 });
 
 /**
@@ -366,52 +379,52 @@ document.addEventListener('DOMContentLoaded', () => {
  * @param {Object} scrollMap - Объект, где ключ это ID кнопки, а значение - ID блока
  */
 function setupSmoothScroll(scrollMap) {
-    const header = document.getElementById('header');
-    const headerHeight = header ? header.offsetHeight : 0;
+  const header = document.getElementById('header');
+  const headerHeight = header ? header.offsetHeight : 0;
 
-    Object.entries(scrollMap).forEach(([buttonId, sectionId]) => {
-        const btn = document.getElementById(buttonId);
-        const section = document.getElementById(sectionId);
+  Object.entries(scrollMap).forEach(([buttonId, sectionId]) => {
+    const btn = document.getElementById(buttonId);
+    const section = document.getElementById(sectionId);
 
-        if (btn && section) {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault(); // Предотвращаем резкий прыжок по якорю
+    if (btn && section) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); // Предотвращаем резкий прыжок по якорю
 
-                // Вычисляем позицию с учетом высоты шапки
-                const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = sectionPosition - headerHeight;
+        // Вычисляем позицию с учетом высоты шапки
+        const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = sectionPosition - headerHeight;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
 
-                // Если меню открыто (мобильное), закрываем его при клике (опционально)
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (mobileMenu && mobileMenu.classList.contains('active')) {
-                    // вызываем функцию закрытия, которую мы писали ранее
-                    toggleMobileMenu(); 
-                }
-            });
+        // Если меню открыто (мобильное), закрываем его при клике (опционально)
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+          // вызываем функцию закрытия, которую мы писали ранее
+          toggleMobileMenu();
         }
-    });
+      });
+    }
+  });
 }
 
 // ИСПОЛЬЗОВАНИЕ:
 // Просто перечисли ID своих кнопок и куда им скроллить
 const myScrolls = {
-    'who-is': 'about-us',
-    'na': 'catalg',
-    'delivery': 'deliv',
-    'cont': 'obratka',
-    'question': 'faq',
-    'who-is-mobile': 'about-us',
-    'na-mobile': 'catalg',
-    'delivery-mobile': 'deliv',
-    'cont-mobile': 'obratka',
-    'question-mobile': 'faq',
-    'mne_nado': 'catalg',
-    // Можно добавлять сколько угодно
+  'who-is': 'about-us',
+  'na': 'catalg',
+  'delivery': 'deliv',
+  'cont': 'obratka',
+  'question': 'faq',
+  'who-is-mobile': 'about-us',
+  'na-mobile': 'catalg',
+  'delivery-mobile': 'deliv',
+  'cont-mobile': 'obratka',
+  'question-mobile': 'faq',
+  'mne_nado': 'catalg',
+  // Можно добавлять сколько угодно
 };
 
 setupSmoothScroll(myScrolls);
@@ -420,30 +433,32 @@ setupSmoothScroll(myScrolls);
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const introVideo = document.querySelector('.video-wrap video');
-    const header = document.getElementById('header');
-    const preview = document.querySelector('.preview');
+  const introVideo = document.querySelector('.video-wrap video');
+  const header = document.getElementById('header');
+  const preview = document.querySelector('.preview');
 
-    if (introVideo) {
-        // Когда видео закончилось
-        introVideo.onended = function() {
-            header.classList.add('visible');
-            preview.classList.add('visible');
-            
-            // Если нужно, чтобы видео после проигрывания плавно исчезло:
-            // document.querySelector('.intro').style.display = 'none';
-        };
+  if (introVideo) {
+    // Когда видео закончилось
+    introVideo.onended = function () {
+      header.classList.add('visible');
+      preview.classList.add('visible');
 
-        setTimeout(() => {
-            header.classList.add('visible');
-            preview.classList.add('visible');
-        }, 10000); 
-    }
+      // Если нужно, чтобы видео после проигрывания плавно исчезло:
+      // document.querySelector('.intro').style.display = 'none';
+    };
+
+    setTimeout(() => {
+      header.classList.add('visible');
+      preview.classList.add('visible');
+    }, 20000);
+  }
 });
+
+
 const skateMenu = document.querySelector('.side-menu');
 const skateMenu2 = document.querySelector('.menu-overlay');
 const skateMobileMenu = document.querySelector('.mobile-side-menu');
-  const skateMobileMenu2= document.querySelector('.mobile-overlay ');
+const skateMobileMenu2 = document.querySelector('.mobile-overlay ');
 
 const skateMenuLinks = document.querySelectorAll('.side-menu a, .mobile-side-menu a');
 
@@ -459,13 +474,14 @@ skateMenuLinks.forEach(link => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const buyButtons = document.querySelectorAll('.catalog-buy-wrapper');
-    
-    buyButtons.forEach(btn => {
-        btn.style.cursor = 'pointer';
-        
-        btn.addEventListener('click', () => {
-            window.location.href = 'page_not_found.html';
-        });
+  const buyButtons = document.querySelectorAll('.catalog-buy-wrapper');
+
+  buyButtons.forEach(btn => {
+    btn.style.cursor = 'pointer';
+
+    btn.addEventListener('click', () => {
+      window.location.href = 'page_not_found.html';
     });
+  });
 });
+

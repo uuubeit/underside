@@ -1,3 +1,48 @@
+body.loading {
+  overflow: hidden;
+}
+
+
+/* можно вообще скрыть */
+body.loading > *:not(#preloader) {
+  opacity: 0;
+}
+
+/* прелоадер */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #C70709;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #FFFFEE;
+  font-size: 40px;
+
+  transition: opacity 0.5s ease;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* плавное появление сайта */
+body.loaded > *:not(#preloader) {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+
+.loader-gif {
+  width: 200px; /* регулируешь */
+  height: auto;
+}
+
+
 @font-face {
     font-family: 'A24';
     src: url("../fonts/A24-Regular.otf") format('opentype');
