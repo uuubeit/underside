@@ -10,10 +10,10 @@
 </head>
 
 
-<body class="loading">
-    <div id="preloader">
+<body class="">
+    <!-- <div id="preloader">
           <img src="assets/media/loading_dog.gif" alt="loading" class="loader-gif">
-    </div>
+    </div> -->
 
     <div class="mobile-side-menu mobile" id="mobileMenu">
         <div class="mobile-menu-inner">
@@ -21,36 +21,37 @@
                 <button class="menu-close-btn" id="closeMobileMenu">&times;</button>
             </div>
             <nav class="mobile-menu-nav">
-                <a id="who-is" href="#about" class="menu-link">кто мы? чё мы?</a>
-                <a id="na" href="#catalog" class="menu-link">на, подгон</a>
-                <a id="delivery" href="#faq" class="menu-link">доставка</a>
-                <a id="cont" href="#contacts" class="menu-link">обратка, ок</a>
-                <a id="question" href="#contacts" class="menu-link">вот в чем вопрос</a>
+                <a id="who-is-mobile" href="#about" class="menu-link">кто мы? чё мы?</a>
+                <a id="na-mobile" href="#catalog" class="menu-link">на, подгон</a>
+                <a id="delivery-mobile" href="#faq" class="menu-link">доставка</a>
+                <a id="cont-mobile" href="#contacts" class="menu-link">обратка, ок</a>
+                <a id="question-mobile" href="#contacts" class="menu-link">вот в чем вопрос</a>
             </nav>
             <div class="mobile-menu-footer">
                 <p>Изнанка — твой звук</p>
             </div>
         </div>
     </div>
-    <div class="mobile-overlay unmobile" id="mobileOverlay"></div>
 
     <div class="side-menu" id="sideMenu">
         <div class="menu-header">
             <button class="menu-close-btn" id="closeMenu">&times;</button>
         </div>
-        <nav class="menu-content">
-            <a id="who-is-mobile" href="#about" class="menu-link">кто мы? чё мы?</a>
-            <a id="na-mobile" href="#catalog" class="menu-link">на, подгон</a>
-            <a id="delivery-mobile" href="#faq" class="menu-link">доставка</a>
-            <a id="cont-mobile" href="#contacts" class="menu-link">обратка, ок</a>
-            <a id="question-mobile" href="#contacts" class="menu-link">вот в чем вопрос</a>
-            <img style="width: 100px;" src="/assets/media/demogorgon.png" alt="">
+        <nav class="menu-nav">
+            <a id="who-is"  class="menu-link">кто мы? чё мы?</a>
+            <a id="na"  class="menu-link">на, подгон</a>
+            <a id="delivery" class="menu-link">доставка</a>
+            <a id="cont" class="menu-link">обратка, ок</a>
+            <a id="question"  class="menu-link">вот в чем вопрос</a>
+            <a id="articles" href="articles.html" class="menu-link">статьи</a>
 
         </nav>
     </div>
     <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="menu-overlay" id="menuMobileOverlay"></div>
+    <div class="menu-overlay" id="cartOverlay"></div>
     <header>
-        <div class="header" id="header">
+        <div class="header visible" id="header">
             <div class="header-left">
                 <div class="menu-icon unmobile menu-open-btn">
                     <img src="assets/icons/menu-icon.svg" alt="arrow">
@@ -64,7 +65,7 @@
                     <a href="https://vk.ru/club236979089"><img src="assets/icons/vk-icon.svg" alt="arrow"></a>
                     <a href="https://t.me/iznankazvuka"><img src="assets/icons/telegram-icon.svg" alt="arrow"></a>
                     <a href="varya.fedorova.06@list.ru"><img src="assets/icons/main-icon.svg" alt="arrow"></a>
-                    <a href="page_not_found.html"><img id="cart-icon-mobile" src="assets/icons/cart-icon.svg"
+                    <a class="cart-button"><img id="cart-icon-mobile" src="assets/icons/cart-icon.svg"
                             alt="arrow"></a>
                     <div class="menu-icon mobile menu-open-btn">
                         <img id="menu-icon-mobile" src="assets/icons/menu-icon.svg" alt="arrow">
@@ -73,7 +74,7 @@
             </div>
         </div>
     </header>
-    <div class="preview ">
+    <div class="preview visible">
         <div class="marquee">
             <div class="marquee-track">
                 <span>скидка 15% по промокоду OK! • на первый заказ • </span>
@@ -104,9 +105,10 @@
 
     <div class="intro container">
         <div class="video-wrap">
-            <video id="intro_video" pip="false" autoplay muted playsinline controlslist="nofullscreen noremoteplayback nodownload"
-                preload="metadata" poster="assets\media\end.png">
-                <source src="assets/media/animate.mp4">
+            <video id="intro_video" pip="false" autoplay muted playsinline
+                controlslist="nofullscreen noremoteplayback nodownload" preload="metadata"
+                poster="assets\media\end.png">
+                <source src="assets/media/nimate.mp4">
             </video>
         </div>
     </div>
@@ -561,6 +563,38 @@
             </div>
         </div>
     </footer>
+
+
+    <!-- Модальное окно корзины -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2 class="cart-title">корзина</h2>
+            <button class="cart-close-btn" id="closeCart">&times;</button>
+        </div>
+
+        <div class="cart-content">
+            <!-- Пример товара -->
+            <div class="cart-item">
+                <img src="/assets/media/player.png" alt="" class="cart-item-img">
+                <div class="cart-item-info">
+                    <span class="cart-item-name">проигрыватель «изнанка»</span>
+                    <span class="cart-item-price">15 000 ₽</span>
+                </div>
+                <button class="cart-item-remove">&times;</button>
+            </div>
+
+            <!-- Если корзина пуста -->
+            <!-- <p class="empty-msg">пока пусто, навали стиля!</p> -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>итого:</span>
+                <span>15 000 ₽</span>
+            </div>
+            <button class="cart-checkout-btn">оформить подгон</button>
+        </div>
+    </div>
 
     <script src="assets/js/preloader.js"></script>
     <script src="assets\js\app.js" defer></script>

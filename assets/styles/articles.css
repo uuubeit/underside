@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url("../fonts/Montserrat-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("/assets/fonts/Montserrat-Regular.ttf") format('truetype');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("/assets/fonts/Montserrat-SemiBold.ttf") format('truetype');
+    font-weight: 600;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url("/assets/fonts/Montserrat-Bold.ttf") format('truetype');
+    font-weight: 700;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #C70709;
+    background-color: #FFFFEE;
+    overflow-x: hidden;
+    /* Защита от горизонтального скролла */
+}
+
+
+
+/* ================= HEADER ================= */
+header {
+    width: 100%;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+}
+
+.header {
+    background-color: #C70709;
+    color: #FFFFEE;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(10px, 2vw, 10px) clamp(15px, 4vw, 30px);
+    transition: all 0.3s ease;
+}
+
+.menu-icon img {
+    cursor: pointer;
+    width: clamp(30px, 6vw, 100px);
+    height: auto;
+}
+
+.logo {
+    font-family: 'A24', sans-serif;
+    line-height: 0.8;
+    font-size: clamp(40px, 8vw, 140px);
+    text-align: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: clamp(5px, 1.5vw, 15px);
+}
+
+.header-icons img {
+    width: clamp(20px, 3.5vw, 60px);
+    height: auto;
+    cursor: pointer;
+}
+
+/* CONTENT */
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 2vw 2vw;
+    color: #000;
+}
+
+.subtitle{
+    width: 80%;
+    font-size: clamp(28px, 3vw, 48px);
+    font-weight: 600;
+    margin: 1vw 0;
+}
+.text-content{
+    width: 95%;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 2vw;
+}
+
+ol.custom-counter {
+  list-style: none; /* Убираем стандартные маркеры */
+  counter-reset: item; /* Инициализируем счётчик */
+}
+
+ol.custom-counter li {
+  counter-increment: item; /* Увеличиваем счётчик для каждого элемента */
+}
+
+ol.custom-counter li::before {
+  content: counter(item) ") "; /* Выводим номер + скобка + пробел */
+  display: inline-block;
+  width: 1em; /* Фиксированная ширина для выравнивания */
+  margin-right: 0.2em; /* Отступ справа */
+  text-align: center; /* Выравнивание номера по правому краю внутри блока */
+}
+
+img{
+    width: 40%;
+    margin: 2vw 0;
+}

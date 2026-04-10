@@ -69,6 +69,9 @@ body.loaded > *:not(#preloader) {
     font-weight: 600;
     font-display: swap;
 }
+a{
+    cursor: pointer;
+}
 /* Начальное состояние: скрыто */
 .header, 
 .preview {
@@ -207,7 +210,7 @@ header {
 /* ================= MARQUEE ================= */
 .marquee {
     position: sticky;
-    top: calc(var(--header-height) + 10px);
+    top: calc(8vw + 10px);
     z-index: 5;
     background-color: #FFFFEE;
     color: var(--red);
@@ -390,6 +393,7 @@ header {
     width: 100%;
     padding: clamp(30px, 5vw, 80px) clamp(15px, 5vw, 40px);
     gap: clamp(40px, 6vw, 80px);
+    margin: 1vw;
 }
 
 .about-us-content {
@@ -650,7 +654,6 @@ header {
         margin-top: 2%;
     }
 
-    .slide-layers {}
 
     .layer {
         width: 100%;
@@ -1263,11 +1266,6 @@ header {
     margin-bottom: 50px;
 }
 
-.menu-content {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
 
 .menu-link {
     color: #C70709;
@@ -1304,24 +1302,6 @@ body.no-scroll {
     transform: translateX(100%);
 }
 
-.mobile-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    display: none;
-    z-index: 1999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.mobile-overlay.active {
-    display: block;
-    opacity: 1;
-}
 
 .mobile-menu-inner {
     display: flex;
@@ -1344,6 +1324,13 @@ body.no-scroll {
     margin-top: 60px;
 }
 
+
+.menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 .mob-link {
     color: #C70709;
     text-decoration: none;
@@ -1362,4 +1349,126 @@ body.no-scroll {
 body.stop-scrolling {
     height: 100vh;
     overflow: hidden;
+}
+
+
+
+/* Окно корзины */
+.cart-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9); /* Начальное состояние чуть меньше */
+    width: 90%;
+    max-width: 500px;
+    background-color: #FFFFEE;
+    border-radius: 2vw;
+    z-index: 2001;
+    padding: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cart-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Шапка корзины */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #C70709;
+    padding-bottom: 10px;
+}
+
+.cart-title {
+    color: #C70709;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.cart-close-btn {
+    background: none;
+    border: none;
+    color: #C70709;
+    font-size: 40px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Список товаров */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.cart-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    background: #eee;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.cart-item-name {
+    color: #C70709;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+.cart-item-price {
+    color: #C70709;
+}
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: #C70709;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Футер корзины */
+.cart-footer {
+    margin-top: 20px;
+    border-top: 2px solid #C70709;
+    padding-top: 20px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    color: #C70709;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.cart-checkout-btn {
+    width: 100%;
+    background-color: #C70709;
+    color: #FFFFEE;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cart-checkout-btn:hover {
+    background-color: #000;
 }

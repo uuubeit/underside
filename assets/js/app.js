@@ -1,15 +1,15 @@
-const preloader = document.getElementById('preloader');
-const video = document.querySelector('#intro_video');
+// const preloader = document.getElementById('preloader');
+// const video = document.querySelector('#intro_video');
 
-function hidePreloader() {
-  preloader.classList.add('hidden');
-  document.body.classList.remove('loading');
-}
+// function hidePreloader() {
+//   preloader.classList.add('hidden');
+//   document.body.classList.remove('loading');
+// }
 
-// когда видео готово полностью
-video.addEventListener('canplaythrough', () => {
-  hidePreloader();
-});
+// // когда видео готово полностью
+// video.addEventListener('canplaythrough', () => {
+//   hidePreloader();
+// });
 
 let observer;
 
@@ -348,7 +348,7 @@ menuLinks.forEach(link => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.getElementById('mobileMenu');
-  const mobileOverlay = document.getElementById('mobileOverlay');
+  const mobileOverlay = document.getElementById('menuMobileOverlay');
   const openBtn = document.getElementById('menu-icon-mobile'); // Твой существующий ID
   const closeBtn = document.getElementById('closeMobileMenu');
   const mobLinks = document.querySelectorAll('.mob-link');
@@ -414,14 +414,14 @@ function setupSmoothScroll(scrollMap) {
 // Просто перечисли ID своих кнопок и куда им скроллить
 const myScrolls = {
   'who-is': 'about-us',
-  'na': 'catalg',
-  'delivery': 'deliv',
-  'cont': 'obratka',
-  'question': 'faq',
   'who-is-mobile': 'about-us',
+  'na': 'mode-toggle',
   'na-mobile': 'catalg',
+  'delivery': 'deliv',
   'delivery-mobile': 'deliv',
+  'cont': 'obratka',
   'cont-mobile': 'obratka',
+  'question': 'faq',
   'question-mobile': 'faq',
   'mne_nado': 'catalg',
   // Можно добавлять сколько угодно
@@ -430,29 +430,6 @@ const myScrolls = {
 setupSmoothScroll(myScrolls);
 
 
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const introVideo = document.querySelector('.video-wrap video');
-  const header = document.getElementById('header');
-  const preview = document.querySelector('.preview');
-
-  if (introVideo) {
-    // Когда видео закончилось
-    introVideo.onended = function () {
-      header.classList.add('visible');
-      preview.classList.add('visible');
-
-      // Если нужно, чтобы видео после проигрывания плавно исчезло:
-      // document.querySelector('.intro').style.display = 'none';
-    };
-
-    setTimeout(() => {
-      header.classList.add('visible');
-      preview.classList.add('visible');
-    }, 20000);
-  }
-});
 
 
 const skateMenu = document.querySelector('.side-menu');
@@ -485,3 +462,37 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+
+const cartModal = document.querySelector('#cartModal');
+const cartOverlay = document.querySelector('#cartOverlay');
+const closeCartBtn = document.querySelector('#closeCart');
+const openCartBtns = document.querySelectorAll('.cart-button'); // Выбирает иконку корзины
+
+// Функция открытия
+function openCart() {
+    cartModal.classList.add('active');
+    cartOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Запрещаем скролл сайта
+}
+
+// Функция закрытия
+function closeCart() {
+    cartModal.classList.remove('active');
+    cartOverlay.classList.remove('active');
+    document.body.style.overflow = ''; // Возвращаем скролл
+}
+
+// Слушатели событий
+openCartBtns.forEach(btn=>{
+  if(btn) {
+      btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openCart();
+      });
+  }
+
+})
+
+closeCartBtn.addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart); // Закрытие по клику вне окна
