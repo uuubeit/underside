@@ -32,7 +32,7 @@ body.loading > *:not(#preloader) {
 
 /* плавное появление сайта */
 body.loaded > *:not(#preloader) {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.5s ease;
 }
 

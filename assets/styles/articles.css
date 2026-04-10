@@ -18,6 +18,7 @@
     font-weight: 600;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Montserrat';
     src: url("../fonts/Montserrat-Bold.ttf") format('truetype');
@@ -91,7 +92,7 @@ header {
 }
 
 /* CONTENT */
-.container{
+.container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -100,13 +101,20 @@ header {
     color: #000;
 }
 
-.subtitle{
-    width: 80%;
+.container a {
+    font-size: 40px;
+    text-decoration: none;
+    color: #000;
+}
+
+.subtitle {
+    width: 95%;
     font-size: clamp(28px, 3vw, 48px);
     font-weight: 600;
     margin: 1vw 0;
 }
-.text-content{
+
+.text-content {
     width: 95%;
     font-size: 40px;
     font-weight: 500;
@@ -114,23 +122,86 @@ header {
 }
 
 ol.custom-counter {
-  list-style: none; /* Убираем стандартные маркеры */
-  counter-reset: item; /* Инициализируем счётчик */
+    list-style: none;
+    /* Убираем стандартные маркеры */
+    counter-reset: item;
+    /* Инициализируем счётчик */
 }
 
 ol.custom-counter li {
-  counter-increment: item; /* Увеличиваем счётчик для каждого элемента */
+    counter-increment: item;
+    /* Увеличиваем счётчик для каждого элемента */
+    padding-left: 1.5em;
+    /* место под номер */
+    text-indent: -1.8em;
+    /* сдвигаем первую строку назад */
 }
 
 ol.custom-counter li::before {
-  content: counter(item) ") "; /* Выводим номер + скобка + пробел */
-  display: inline-block;
-  width: 1em; /* Фиксированная ширина для выравнивания */
-  margin-right: 0.2em; /* Отступ справа */
-  text-align: center; /* Выравнивание номера по правому краю внутри блока */
+    display: inline-block;
+    text-indent: 0.6em;
+    /* сдвигаем первую строку назад */
+
+    width: 1.5em;
+    /* Фиксированная ширина для выравнивания */
+    margin-right: 0.3em;
+    /* Отступ справа */
+    text-align: center;
+    /* Выравнивание номера по правому краю внутри блока */
 }
 
-img{
+#features-nylon li::before {
+    content: counter(item) ") ";
+    /* Выводим номер + скобка + пробел */
+
+}
+
+#cant-do li::before {
+    content: "- ";
+    /* Выводим номер + скобка + пробел */
+
+}
+
+#cleaning-needle li::before {
+    content: counter(item) ". ";
+    /* Выводим номер + скобка + пробел */
+}
+
+/* Список с тире (Совет 3, Совет 4 запреты, Календарь) */
+#disk-cleaning li::before,
+#vinyl-donts li::before,
+#calendar li::before {
+    content: "- ";
+}
+
+/* Список с цифрой и точкой (Совет 4, Совет 5) */
+#vinyl-rules li::before,
+#tools-list li::before {
+    content: counter(item) ". ";
+}
+
+/* Стили для выделения важных предупреждений */
+.text-content strong {
+    font-weight: 700;
+}
+
+/* Список с тире для климатических зон и календаря */
+#climate-wet li::before,
+#climate-dry li::before,
+#climate-temp li::before,
+#final-calendar li::before {
+    content: "•";
+    font-size: 60px;
+    line-height: 15px;
+}
+#climate-wet li,
+#climate-dry li,
+#climate-temp li,
+#final-calendar li {
+        text-indent: -2.7em;
+
+}
+img {
     width: 40%;
     margin: 2vw 0;
 }
