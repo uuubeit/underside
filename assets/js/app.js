@@ -1,15 +1,15 @@
-// const preloader = document.getElementById('preloader');
-// const video = document.querySelector('#intro_video');
+const preloader = document.getElementById('preloader');
+const video = document.querySelector('#intro_video');
 
-// function hidePreloader() {
-//   preloader.classList.add('hidden');
-//   document.body.classList.remove('loading');
-// }
+function hidePreloader() {
+  preloader.classList.add('hidden');
+  document.body.classList.remove('loading');
+}
 
-// // когда видео готово полностью
-// video.addEventListener('canplaythrough', () => {
-//   hidePreloader();
-// });
+// когда видео готово полностью
+video.addEventListener('canplaythrough', () => {
+  hidePreloader();
+});
 
 let observer;
 
@@ -64,8 +64,6 @@ media.addEventListener("change", (e) => {
     destroyObserver(); // выключили
   }
 });
-
-
 
 
 
@@ -496,3 +494,27 @@ openCartBtns.forEach(btn=>{
 
 closeCartBtn.addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', closeCart); // Закрытие по клику вне окна
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const introVideo = document.querySelector('.video-wrap video');
+  const header = document.getElementById('header');
+  const preview = document.querySelector('.preview');
+
+  if (introVideo) {
+    // Когда видео закончилось
+    introVideo.onended = function () {
+      header.classList.add('visible');
+      preview.classList.add('visible');
+
+      // Если нужно, чтобы видео после проигрывания плавно исчезло:
+      // document.querySelector('.intro').style.display = 'none';
+    };
+
+    setTimeout(() => {
+      header.classList.add('visible');
+      preview.classList.add('visible');
+    }, 20000);
+  }
+});
