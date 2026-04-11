@@ -53,11 +53,13 @@ body {
 .side-menu {
     position: fixed;
     top: 0;
-    left: -100%; /* Прячем за левым краем */
+    left: -100%;
+    /* Прячем за левым краем */
     width: 300px;
     height: 100%;
     color: #C70709;
-    background-color: #FFFFEE; /* Или черный, как на скрине */
+    background-color: #FFFFEE;
+    /* Или черный, как на скрине */
     z-index: 1001;
     transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 40px 25px;
@@ -121,12 +123,14 @@ body.no-scroll {
 .mobile-side-menu {
     position: fixed;
     top: 0;
-    left: -100%; /* Спрятано слева */
-    width: 100%; /* Не на весь экран, чтобы был виден оверлей */
+    left: -100%;
+    /* Спрятано слева */
+    width: 100%;
+    /* Не на весь экран, чтобы был виден оверлей */
     height: 100%;
     background-color: #FFFFEE;
     z-index: 2000;
-    transition: transform 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
+    transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
 
 .mobile-side-menu.active {
@@ -232,7 +236,8 @@ header {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.9); /* Начальное состояние чуть меньше */
+    transform: translate(-50%, -50%) scale(0.9);
+    /* Начальное состояние чуть меньше */
     width: 90%;
     max-width: 500px;
     background-color: #FFFFEE;
@@ -409,19 +414,23 @@ ol.custom-counter li::before {
     text-align: center;
     /* Выравнивание номера по правому краю внутри блока */
 }
-ol.counter-dash li::before{
+
+ol.counter-dash li::before {
     content: "- ";
 }
-ol.counter-dot li::before{
+
+ol.counter-dot li::before {
     content: "• ";
-    
+
     font-size: 60px;
     line-height: 15px;
 }
-ol.counter-num li::before{
+
+ol.counter-num li::before {
     content: counter(item) ". ";
 }
-ol.counter-num2 li::before{
+
+ol.counter-num2 li::before {
     content: counter(item) ") ";
 }
 
@@ -469,13 +478,15 @@ ol.counter-num2 li::before{
     font-size: 60px;
     line-height: 15px;
 }
+
 #climate-wet li,
 #climate-dry li,
 #climate-temp li,
 #final-calendar li {
-        text-indent: -2.7em;
+    text-indent: -2.7em;
 
 }
+
 img {
     width: 40%;
     margin: 2vw 0;
@@ -484,14 +495,15 @@ img {
 
 
 
-.articles{
-height: 80vh;
-width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.articles {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
-.articles-row{
+
+.articles-row {
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -499,7 +511,7 @@ width: 100%;
     height: 45%;
 }
 
-.articles-item{
+.articles-item {
     width: 30%;
     height: 100%;
     display: flex;
@@ -512,38 +524,67 @@ width: 100%;
     text-align: center;
     transition: transform 0.4s ease;
 }
-.articles-item:hover{
+
+.articles-item:hover {
     transform: scale(1.1);
 }
-.articles-item img{
+
+.articles-item img {
     width: 70%;
     height: 16vw;
     border-radius: 2vw;
     object-fit: cover;
     margin-bottom: 1vw;
 }
-.articles-item p{
+
+.articles-item p {
     height: 20%;
     width: 100%;
 }
 
+.double-width{
+    width: 130%;
+}
 
-
-
-
+.desktop {
+    display: block;
+}
+.mobile{
+    display: none;
+}
 @media (max-width: 768px) {
-    .articles{
-        height: 100vh;
+    .desktop {
+        display: none;
     }
-.articles-row{
-    flex-direction: column;
-}
-.articles-row a{
-    flex-direction: row;
-    width: 100%;
-}
-.articles-row img{
-    height: 70%;
-    width: 20%;
-}
+    .mobile{
+        display: block;
+    }
+
+
+    .articles {
+        height: 100vh;
+        justify-content: flex-start;
+    }
+    .articles-item{
+        height: 40%;
+    }
+    .articles-row {
+        flex-direction: column;
+    }
+
+    .articles-row a {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .articles-row img {
+        height: 70%;
+        width: 30%;
+        margin: 0 3vw;
+    }
+
+    .articles-row p {
+        width: 60%;
+        font-size:15px;
+    }
 }
