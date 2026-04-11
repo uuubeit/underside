@@ -369,14 +369,14 @@ header {
 
 .subtitle {
     width: 95%;
-    font-size: clamp(19px, 2.8vw, 60px);
+    font-size: clamp(19px, 2.5vw, 60px);
     font-weight: 600;
     margin: 1vw 0;
 }
 
 .text-content {
     width: 95%;
-    font-size: clamp(14px, 2.2vw, 55px);
+    font-size: clamp(14px, 1.9vw, 55px);
     font-weight: 500;
     margin-bottom: 2vw;
 }
@@ -484,11 +484,6 @@ img {
 
 
 
-@media (max-width: 768px) {
-
-}
-
-
 .articles{
 height: 80vh;
 width: 100%;
@@ -530,4 +525,25 @@ width: 100%;
 .articles-item p{
     height: 20%;
     width: 100%;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .articles{
+        height: 100vh;
+    }
+.articles-row{
+    flex-direction: column;
+}
+.articles-row a{
+    flex-direction: row;
+    width: 100%;
+}
+.articles-row img{
+    height: 70%;
+    width: 20%;
+}
 }
