@@ -363,14 +363,14 @@ header {
 
 .subtitle {
     width: 95%;
-    font-size: clamp(26px, 3vw, 60px);
+    font-size: clamp(19px, 3vw, 60px);
     font-weight: 600;
     margin: 1vw 0;
 }
 
 .text-content {
     width: 95%;
-    font-size: clamp(22px, 2.4vw, 55px);
+    font-size: clamp(14px, 2.4vw, 55px);
     font-weight: 500;
     margin-bottom: 2vw;
 }
