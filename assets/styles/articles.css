@@ -403,6 +403,21 @@ ol.custom-counter li::before {
     text-align: center;
     /* Выравнивание номера по правому краю внутри блока */
 }
+ol.counter-dash li::before{
+    content: "- ";
+}
+ol.counter-dot li::before{
+    content: "• ";
+    
+    font-size: 60px;
+    line-height: 15px;
+}
+ol.counter-num li::before{
+    content: counter(item) ". ";
+}
+ol.counter-num2 li::before{
+    content: counter(item) ") ";
+}
 
 #features-nylon li::before {
     content: counter(item) ") ";
