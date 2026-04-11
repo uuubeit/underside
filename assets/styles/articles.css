@@ -38,6 +38,11 @@
     box-sizing: border-box;
 }
 
+
+.desktop {
+    display: block;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -546,14 +551,10 @@ img {
     width: 130%;
 }
 
-.desktop {
-    display: block;
-}
 
 .mobile {
     display: none;
 }
-
 @media (max-width: 768px) {
     .desktop {
         display: none;
