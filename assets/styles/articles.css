@@ -42,6 +42,134 @@ body {
 }
 
 
+/* ================= SIDE MENU ================= */
+/* Стили для бокового меню */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Прячем за левым краем */
+    width: 300px;
+    height: 100%;
+    color: #C70709;
+    background-color: #FFFFEE; /* Или черный, как на скрине */
+    z-index: 1001;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.menu-close-btn {
+    background: none;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-bottom: 50px;
+}
+
+
+.menu-link {
+    color: #C70709;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.menu-link:hover {
+    opacity: 0.7;
+}
+
+/* Чтобы скрыть скролл при открытом меню */
+body.no-scroll {
+    overflow: hidden;
+}
+
+
+/* ================= MOBILE MENU ================= */
+/* Мобильное меню */
+.mobile-side-menu {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Спрятано слева */
+    width: 100%; /* Не на весь экран, чтобы был виден оверлей */
+    height: 100%;
+    background-color: #FFFFEE;
+    z-index: 2000;
+    transition: transform 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.mobile-side-menu.active {
+    transform: translateX(100%);
+}
+
+
+.mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 30px 20px;
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 60px;
+}
+
+
+.menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.mob-link {
+    color: #C70709;
+    text-decoration: none;
+    font-size: 40px;
+    letter-spacing: 1px;
+}
+
+.mobile-menu-footer {
+    margin-top: auto;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
 
 /* ================= HEADER ================= */
 header {
@@ -91,6 +219,132 @@ header {
     cursor: pointer;
 }
 
+
+/* ================= CART ================= */
+/* Окно корзины */
+.cart-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9); /* Начальное состояние чуть меньше */
+    width: 90%;
+    max-width: 500px;
+    background-color: #FFFFEE;
+    border-radius: 2vw;
+    z-index: 2001;
+    padding: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cart-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Шапка корзины */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #C70709;
+    padding-bottom: 10px;
+}
+
+.cart-title {
+    color: #C70709;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.cart-close-btn {
+    background: none;
+    border: none;
+    color: #C70709;
+    font-size: 40px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Список товаров */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.cart-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    background: #eee;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.cart-item-name {
+    color: #C70709;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+.cart-item-price {
+    color: #C70709;
+}
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: #C70709;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Футер корзины */
+.cart-footer {
+    margin-top: 20px;
+    border-top: 2px solid #C70709;
+    padding-top: 20px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    color: #C70709;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.cart-checkout-btn {
+    width: 100%;
+    background-color: #C70709;
+    color: #FFFFEE;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cart-checkout-btn:hover {
+    background-color: #000;
+}
+
+
+
+
+
 /* CONTENT */
 .container {
     width: 100%;
@@ -109,14 +363,14 @@ header {
 
 .subtitle {
     width: 95%;
-    font-size: clamp(28px, 3vw, 48px);
+    font-size: clamp(26px, 3vw, 60px);
     font-weight: 600;
     margin: 1vw 0;
 }
 
 .text-content {
     width: 95%;
-    font-size: 40px;
+    font-size: clamp(22px, 2.4vw, 55px);
     font-weight: 500;
     margin-bottom: 2vw;
 }
@@ -204,4 +458,55 @@ ol.custom-counter li::before {
 img {
     width: 40%;
     margin: 2vw 0;
+}
+
+
+
+
+@media (max-width: 768px) {
+
+}
+
+
+.articles{
+height: 80vh;
+width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.articles-row{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 45%;
+}
+
+.articles-item{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    font-size: clamp(10px, 1.4vw, 55px);
+    text-align: center;
+    transition: transform 0.4s ease;
+}
+.articles-item:hover{
+    transform: scale(1.1);
+}
+.articles-item img{
+    width: 70%;
+    height: 16vw;
+    border-radius: 2vw;
+    object-fit: cover;
+    margin-bottom: 1vw;
+}
+.articles-item p{
+    height: 20%;
+    width: 100%;
 }
