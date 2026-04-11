@@ -10,6 +10,38 @@
 </head>
 
 <body>
+    <div class="mobile-side-menu mobile" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-header">
+        <button class="menu-close-btn" id="closeMobileMenu">&times;</button>
+      </div>
+      <nav class="mobile-menu-nav">
+        <a id="who-is-mobile" href="index.html" class="menu-link">кто мы? чё мы?</a>
+        <a id="na-mobile" href="index.html" class="menu-link">на, подгон</a>
+        <a id="delivery-mobile" href="index.html" class="menu-link">доставка</a>
+        <a id="cont-mobile" href="index.html" class="menu-link">обратка, ок</a>
+        <a id="question-mobile" href="index.html" class="menu-link">вот в чем вопрос</a>
+      </nav>
+      <div class="mobile-menu-footer">
+        <p>Изнанка — твой звук</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-menu" id="sideMenu">
+    <div class="menu-header">
+      <button class="menu-close-btn" id="closeMenu">&times;</button>
+    </div>
+    <nav class="menu-nav">
+      <a id="who-is" href="index.html" class="menu-link">кто мы? чё мы?</a>
+      <a id="na" href="index.html" class="menu-link">на, подгон</a>
+      <a id="delivery" href="index.html" class="menu-link">доставка</a>
+      <a id="cont" href="index.html" class="menu-link">обратка, ок</a>
+      <a id="question" href="index.html" class="menu-link">вот в чем вопрос</a>
+      <a id="articles" href="articles.html" class="menu-link">статьи</a>
+
+    </nav>
+  </div>
   <header>
     <div class="header visible" id="header">
       <div class="header-left">
@@ -212,6 +244,38 @@
       Этот график подходит для большинства регионов.  Во влажном климате добавь ежемесячную проверку корпуса на плесень, в сухом — более частую чистку иглы. 
     </div>
   </article>
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <div class="menu-overlay" id="menuMobileOverlay"></div>
+  <div class="menu-overlay" id="cartOverlay"></div>
+    <div class="cart-modal" id="cartModal">
+    <div class="cart-header">
+      <h2 class="cart-title">корзина</h2>
+      <button class="cart-close-btn" id="closeCart">&times;</button>
+    </div>
+
+    <div class="cart-content">
+      <!-- Пример товара -->
+      <div class="cart-item">
+        <img src="/assets/media/player.png" alt="" class="cart-item-img">
+        <div class="cart-item-info">
+          <span class="cart-item-name">проигрыватель «изнанка»</span>
+          <span class="cart-item-price">15 000 ₽</span>
+        </div>
+        <button class="cart-item-remove">&times;</button>
+      </div>
+
+      <!-- Если корзина пуста -->
+      <!-- <p class="empty-msg">пока пусто, навали стиля!</p> -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>итого:</span>
+        <span>15 000 ₽</span>
+      </div>
+      <button class="cart-checkout-btn">оформить подгон</button>
+    </div>
+  </div>
     <script src="assets/js/header_app.js"></script>
 
 </body>
