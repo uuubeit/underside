@@ -18,7 +18,7 @@ function setupSmoothScroll(scrollMap) {
 
         // Вычисляем позицию с учетом высоты шапки
         const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = sectionPosition - headerHeight;
+        const offsetPosition = sectionPosition ;
 
         window.scrollTo({
           top: offsetPosition,
@@ -26,11 +26,11 @@ function setupSmoothScroll(scrollMap) {
         });
 
         // Если меню открыто (мобильное), закрываем его при клике (опционально)
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenu && mobileMenu.classList.contains('active')) {
-          // вызываем функцию закрытия, которую мы писали ранее
-          toggleMobileMenu();
-        }
+        // const mobileMenu = document.getElementById('mobileMenu');
+        // if (mobileMenu && mobileMenu.classList.contains('active')) {
+        //   // вызываем функцию закрытия, которую мы писали ранее
+        //   toggleMobileMenu();
+        // }
       });
     }
   });
@@ -41,7 +41,7 @@ function setupSmoothScroll(scrollMap) {
 const myScrolls = {
   'who-is': 'about-us',
   'who-is-mobile': 'about-us',
-  'na': 'mode-toggle',
+  'na': 'catalg',
   'na-mobile': 'catalg',
   'delivery': 'deliv',
   'delivery-mobile': 'deliv',
@@ -86,6 +86,8 @@ menuLinks.forEach(link => {
   link.addEventListener('click', toggleMenu);
 });
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileOverlay = document.getElementById('menuMobileOverlay');
@@ -95,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function toggleMobileMenu() {
     mobileMenu.classList.toggle('active');
-    mobileOverlay.classList.toggle('active');
-    document.body.classList.toggle('stop-scrolling');
+    // mobileOverlay.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
   }
 
   if (openBtn) {

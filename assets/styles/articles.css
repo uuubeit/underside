@@ -502,10 +502,11 @@ img {
 
 .articles {
     height: 80vh;
+    min-height: 700px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .articles-row {

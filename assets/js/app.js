@@ -317,9 +317,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 const skateMenu = document.querySelector('.side-menu');
-const skateMenu2 = document.querySelector('.menu-overlay');
+const skateMenu2 = document.querySelector('#menuOverlay');
 const skateMobileMenu = document.querySelector('.mobile-side-menu');
-const skateMobileMenu2 = document.querySelector('.mobile-overlay ');
 
 const skateMenuLinks = document.querySelectorAll('.side-menu a, .mobile-side-menu a');
 
@@ -330,7 +329,6 @@ skateMenuLinks.forEach(link => {
     skateMenu2.classList.remove('active');
     skateMobileMenu.classList.remove('active');
     skateMobileMenu.classList.remove('open');
-    skateMobileMenu2.classList.remove('active');
   });
 });
 
@@ -360,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
     introVideo.onended = function () {
       header.classList.add('visible');
       preview.classList.add('visible');
+      document.body.classList.remove('no-scroll');
 
       // Если нужно, чтобы видео после проигрывания плавно исчезло:
       // document.querySelector('.intro').style.display = 'none';
@@ -368,6 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       header.classList.add('visible');
       preview.classList.add('visible');
+      document.body.classList.remove('no-scroll');
     }, 20000);
   }
 });

@@ -1,45 +1,46 @@
 body.loading {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 
 /* можно вообще скрыть */
-body.loading > *:not(#preloader) {
-  opacity: 0;
+body.loading>*:not(#preloader) {
+    opacity: 0;
 }
 
 /* прелоадер */
 #preloader {
-  position: fixed;
-  inset: 0;
-  background: #C70709;
-  z-index: 9999;
+    position: fixed;
+    inset: 0;
+    background: #C70709;
+    z-index: 9999;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  color: #FFFFEE;
-  font-size: 40px;
+    color: #FFFFEE;
+    font-size: 40px;
 
-  transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
 }
 
 #preloader.hidden {
-  opacity: 0;
-  pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* плавное появление сайта */
-body.loaded > *:not(#preloader) {
-  opacity: 1;
-  transition: opacity 0.5s ease;
+body.loaded>*:not(#preloader) {
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 
 
 .loader-gif {
-  width: 200px; /* регулируешь */
-  height: auto;
+    width: 200px;
+    /* регулируешь */
+    height: auto;
 }
 
 
@@ -69,19 +70,22 @@ body.loaded > *:not(#preloader) {
     font-weight: 600;
     font-display: swap;
 }
-a{
+
+a {
     cursor: pointer;
 }
+
 /* Начальное состояние: скрыто */
-.header, 
+.header,
 .preview {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 1.2s ease-in-out; /* Плавность появления */
+    transition: opacity 1.2s ease-in-out;
+    /* Плавность появления */
 }
 
 /* Состояние после окончания видео */
-.header.visible, 
+.header.visible,
 .preview.visible {
     opacity: 1;
     pointer-events: all;
@@ -146,6 +150,8 @@ header {
     line-height: 0.8;
     font-size: clamp(40px, 8vw, 140px);
     text-align: center;
+    text-decoration: none;
+    color: inherit;
 }
 
 .header-right {
@@ -191,12 +197,13 @@ header {
     .header-icons a:last-of-type {
         display: block;
     }
-    .header-icons img{
+
+    .header-icons img {
         width: clamp(20px, 7.5vw, 60px);
     }
 
     .menu-icon img,
-    .header-icons a  {
+    .header-icons a {
         width: clamp(30px, 9vw, 60px);
         margin: 0px 5px;
     }
@@ -204,6 +211,7 @@ header {
     .logo {
         position: absolute;
         left: 5%;
+
     }
 }
 
@@ -313,6 +321,13 @@ header {
 }
 
 @media (max-width: 768px) {
+    .marquee {
+        top: calc(11vw + 20px);
+    }
+    #obratka{
+        padding-top: 12vw;
+    }
+
     .preview-content {
         flex-direction: column;
         text-align: center;
@@ -371,16 +386,18 @@ header {
     object-fit: cover;
     pointer-events: none;
 }
+
 @media (max-width: 768px) {
-    .intro{
+    .intro {
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-.video-wrap {
-    width: 100%;
-}
+
+    .video-wrap {
+        width: 100%;
+    }
 
 
 }
@@ -391,9 +408,9 @@ header {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: clamp(30px, 5vw, 80px) clamp(15px, 5vw, 40px);
+    padding: clamp(30px, 8vw, 120px) clamp(15px, 5vw, 40px);
     gap: clamp(40px, 6vw, 80px);
-    margin: 1vw;
+    margin-bottom: 1vw;
 }
 
 .about-us-content {
@@ -869,14 +886,16 @@ header {
         /* Чтобы картинка заполнила весь блок */
         background-position: center;
     }
-    #skater img{
-        width:  20vw;
+
+    #skater img {
+        width: 20vw;
     }
-.skate-slide p {
-    font-size: clamp(20px, 2.5vw, 50px);
-    width: 80%;
-    margin-left: -20%;
-}
+
+    .skate-slide p {
+        font-size: clamp(20px, 2.5vw, 50px);
+        width: 80%;
+        margin-left: -20%;
+    }
 }
 
 
@@ -993,15 +1012,17 @@ header {
 
 
 @media (max-width: 768px) {
-    .avatar-wrapper{
+    .avatar-wrapper {
         width: 40vw;
-    margin-bottom: 5vw;
+        margin-bottom: 5vw;
     }
-    .review-bubble{
+
+    .review-bubble {
         width: 80%;
         margin-bottom: 10vw;
     }
 }
+
 /* ================= FAQ ================= */
 .faq-section {
     background-color: var(--red);
@@ -1213,7 +1234,8 @@ header {
     .unmobile {
         display: none;
     }
-    .faq-title{
+
+    .faq-title {
         font-size: clamp(40px, 12vw, 80px);
     }
 }
@@ -1222,11 +1244,13 @@ header {
 .side-menu {
     position: fixed;
     top: 0;
-    left: -100%; /* Прячем за левым краем */
+    left: -100%;
+    /* Прячем за левым краем */
     width: 300px;
     height: 100%;
     color: #C70709;
-    background-color: #FFFFEE; /* Или черный, как на скрине */
+    background-color: #FFFFEE;
+    /* Или черный, как на скрине */
     z-index: 1001;
     transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 40px 25px;
@@ -1290,12 +1314,14 @@ body.no-scroll {
 .mobile-side-menu {
     position: fixed;
     top: 0;
-    left: -100%; /* Спрятано слева */
-    width: 100%; /* Не на весь экран, чтобы был виден оверлей */
+    left: -100%;
+    /* Спрятано слева */
+    width: 100%;
+    /* Не на весь экран, чтобы был виден оверлей */
     height: 100%;
     background-color: #FFFFEE;
     z-index: 2000;
-    transition: transform 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
+    transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
 
 .mobile-side-menu.active {
@@ -1358,7 +1384,8 @@ body.stop-scrolling {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.9); /* Начальное состояние чуть меньше */
+    transform: translate(-50%, -50%) scale(0.9);
+    /* Начальное состояние чуть меньше */
     width: 90%;
     max-width: 500px;
     background-color: #FFFFEE;
