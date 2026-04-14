@@ -574,6 +574,9 @@ img {
     .articles-item {
         height: 40%;
     }
+    .articles-item p{
+        height: auto;
+    }
 
     .articles-row {
         flex-direction: column;
